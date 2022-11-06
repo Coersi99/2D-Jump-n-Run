@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 
     Rigidbody2D rb;
     BoxCollider2D bc;
-    [SerializeField] private float jumpForce = 30;
+    [SerializeField] private float jumpForce = 30f;
     [SerializeField] private float speed = 10f;
 
     // Start is called before the first frame update
@@ -46,7 +46,13 @@ public class Player : MonoBehaviour
     private bool isGrounded()
     {
         float extraHeight = 0.05f;
-        RaycastHit2D rh = Physics2D.Raycast(bc.bounds.center, Vector2.down, bc.bounds.extents.y + extraHeight, platformLayerMask);
-        return rh.collider != null;
+        float sideBuffer = 0.01f;
+        float size = bc.bounds.size.x;
+        Vector3 startPos = bc.bounds.center + Vector3.right * size / 2 + Vector3.left * sideBuffer;
+        RaycastHit2D rh1 = Physics2D.Raycast(startPos, Vector2.down, bc.bounds.extents.y + extraHeight, platformLayerMask);
+        startPos = bc.bounds.center + Vector3.left * size / 2 + Vector3.right * sideBuffer;
+        RaycastHit2D rh2 = Physics2D.Raycast(startPos, Vector2.down, bc.bounds.extents.y + extraHeight, platformLayerMask);
+        // Debug.DrawRay(bc.bounds.center + Vector3.right * size / 2 + Vector3.left * sideBuffer, Vector2.down * (bc.bounds.extents.y + extraHeight));
+        return rh1.collider != null || rh2.collider != null;
     }
 }
