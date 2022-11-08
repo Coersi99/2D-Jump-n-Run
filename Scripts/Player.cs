@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     BoxCollider2D bc;
     [SerializeField] private float jumpForce = 30f;
     [SerializeField] private float speed = 10f;
+    [SerializeField] private int maxLeft = -7;
+    [SerializeField] private int maxRight = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -29,11 +31,11 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A) && transform.position.x > maxLeft)
         {
             rb.velocity = new Vector2(-speed, rb.velocity.y);
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.D) && transform.position.x < maxRight)
         {
             rb.velocity = new Vector2(speed, rb.velocity.y);
         }
