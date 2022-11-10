@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -12,6 +13,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float speed = 10f;
     [SerializeField] private int maxLeft = -7;
     [SerializeField] private int maxRight = 10;
+
+    [SerializeField] ProjectilePool projectilePool;
+
+    private bool facingRight = true;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +32,11 @@ public class Player : MonoBehaviour
         {
             rb.velocity = Vector2.up * jumpForce;
         }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            projectilePool.SpawnObject(facingRight, bc.bounds.center, bc.bounds.size.x);
+        }
     }
 
     private void FixedUpdate()
@@ -34,10 +44,12 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.A) && transform.position.x > maxLeft)
         {
             rb.velocity = new Vector2(-speed, rb.velocity.y);
+            facingRight = false;
         }
         else if (Input.GetKey(KeyCode.D) && transform.position.x < maxRight)
         {
             rb.velocity = new Vector2(speed, rb.velocity.y);
+            facingRight = true;
         }
         else
         {
