@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
         {
             rb.velocity = Vector2.up * jumpForce;
         }
-
+        // shooting
         if (Input.GetKeyDown(KeyCode.K))
         {
             projectilePool.SpawnObject(facingRight, bc.bounds.center, bc.bounds.size.x);
