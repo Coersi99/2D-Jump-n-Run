@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField] private int maxRight = 10;
     [SerializeField] ProjectilePool projectilePool;
 
-    private bool facingRight = true;
+    private bool isFacingRight = true;
     //Movement direction
     [SerializeField] bool spawnFacingLeft;
     private Vector2 facingLeft;
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
         // shooting
         if (Input.GetKeyDown(KeyCode.K))
         {
-            projectilePool.SpawnObject(facingRight, bc.bounds.center, bc.bounds.size.x);
+            projectilePool.SpawnObject(isFacingRight, bc.bounds.center, bc.bounds.size.x);
         }
     }
 
@@ -54,13 +54,13 @@ public class Player : MonoBehaviour
         {
             rb.velocity = new Vector2(-speed, rb.velocity.y);
             transform.localScale = facingLeft;
-            facingRight = false;
+            isFacingRight = false;
         }
         else if (Input.GetKey(KeyCode.D) && transform.position.x < maxRight)
         {
             rb.velocity = new Vector2(speed, rb.velocity.y);
             transform.localScale = facingRight;
-            facingRight = true;
+            isFacingRight = true;
         }
         else
         {
