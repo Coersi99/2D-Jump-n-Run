@@ -12,12 +12,23 @@ public class Player : MonoBehaviour
     [SerializeField] private float speed = 10f;
     [SerializeField] private int maxLeft = -7;
     [SerializeField] private int maxRight = 10;
+    
+    //Movement direction
+    [SerializeField] bool spawnFacingLeft;
+    private Vector2 facingLeft;
+    private Vector2 facingRight;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
+        facingRight = new Vector2(transform.localScale.x, transform.localScale.y);
+        facingLeft = new Vector2(-transform.localScale.x, transform.localScale.y);
+        if(spawnFacingLeft)
+        {
+            transform.localScale = facingLeft;
+        }
     }
 
     // Update is called once per frame
@@ -34,10 +45,12 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.A) && transform.position.x > maxLeft)
         {
             rb.velocity = new Vector2(-speed, rb.velocity.y);
+            transform.localScale = facingLeft;
         }
         else if (Input.GetKey(KeyCode.D) && transform.position.x < maxRight)
         {
             rb.velocity = new Vector2(speed, rb.velocity.y);
+            transform.localScale = facingRight;
         }
         else
         {
