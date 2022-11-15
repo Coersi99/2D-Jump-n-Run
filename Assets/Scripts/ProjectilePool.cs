@@ -19,12 +19,6 @@ public class ProjectilePool : MonoBehaviour
             poolObjects.Add(createNewObject());
     }
 
-    void Update()
-    {
-        
-    }
-
-
     GameObject createNewObject()
     {
         // create a new object, deactivate it and assign its parent transform to the spawner

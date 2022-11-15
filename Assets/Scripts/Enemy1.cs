@@ -53,16 +53,14 @@ public class Enemy1 : MonoBehaviour
             dir = Vector3.left;
         }
         Vector3 startPos = bc.bounds.center + Vector3.up * size / 2 + Vector3.down * sideBuffer;
-        RaycastHit2D rhUp = Physics2D.Raycast(startPos, dir, bc.bounds.extents.y + extraDepth, platformLayerMask);
+        RaycastHit2D rhUp = Physics2D.Raycast(startPos, dir, bc.bounds.extents.x + extraDepth, platformLayerMask);
+        // Debug.DrawRay(startPos, dir * (bc.bounds.extents.y + extraDepth));
         startPos = bc.bounds.center + Vector3.down * size / 2 + Vector3.up * sideBuffer;
-        RaycastHit2D rhDown = Physics2D.Raycast(startPos, dir, bc.bounds.extents.y + extraDepth, platformLayerMask);
+        RaycastHit2D rhDown = Physics2D.Raycast(startPos, dir, bc.bounds.extents.x + extraDepth, platformLayerMask);
         // Debug.DrawRay(startPos, dir * (bc.bounds.extents.y + extraDepth));
         return rhUp.collider != null || rhDown.collider != null;
     }
 
-    // returns 1 if left side over edge
-    // returns 2 if completely on ground edge
-    // returns 3 if right side over edge
     private bool reachedEdge(bool facingRight)
     {
         float extraHeight = 0.05f;
