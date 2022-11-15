@@ -239,6 +239,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor
       objectReference: {fileID: 0}
+    - target: {fileID: 1037057881382814412, guid: a2187e597393940b3b5d671019e7bba9, type: 3}
+      propertyPath: m_Color.b
+      value: 0.66841334
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037057881382814412, guid: a2187e597393940b3b5d671019e7bba9, type: 3}
+      propertyPath: m_Color.g
+      value: 0.14960839
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037057881382814412, guid: a2187e597393940b3b5d671019e7bba9, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
     - target: {fileID: 2034129393836969031, guid: a2187e597393940b3b5d671019e7bba9, type: 3}
       propertyPath: m_RootOrder
       value: 6
