@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private LayerMask platformLayerMask;
 
+    public Animator animator;
+
     Rigidbody2D rb;
     BoxCollider2D bc;
     CircleCollider2D cc;
@@ -43,7 +45,9 @@ public class Player : MonoBehaviour
         if (isGrounded() && Input.GetButtonDown("Jump"))
         {
             rb.velocity = Vector2.up * jumpForce;
+            animator.SetTrigger("Jump");
         }
+
         // shooting
         if (Input.GetKeyDown(KeyCode.K))
         {
@@ -58,16 +62,19 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(-speed, rb.velocity.y);
             transform.localScale = facingLeft;
             isFacingRight = false;
+            animator.SetFloat("Speed", 1);
         }
         else if (Input.GetKey(KeyCode.D) && transform.position.x < maxRight)
         {
             rb.velocity = new Vector2(speed, rb.velocity.y);
             transform.localScale = facingRight;
             isFacingRight = true;
+            animator.SetFloat("Speed", 1);
         }
         else
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
+            animator.SetFloat("Speed", 0);
         }
     }
 
