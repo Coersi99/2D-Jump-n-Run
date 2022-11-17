@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 
     Rigidbody2D rb;
     BoxCollider2D bc;
+    CircleCollider2D cc;
     [SerializeField] private float jumpForce = 30f;
     [SerializeField] private float speed = 10f;
     [SerializeField] private int maxLeft = -7;
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour
     [SerializeField] ProjectilePool projectilePool;
 
     private bool isFacingRight = true;
+
     //Movement direction
     [SerializeField] bool spawnFacingLeft;
     private Vector2 facingLeft;
@@ -26,6 +28,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
+        cc = GetComponent<CircleCollider2D>();
         facingRight = new Vector2(transform.localScale.x, transform.localScale.y);
         facingLeft = new Vector2(-transform.localScale.x, transform.localScale.y);
         if(spawnFacingLeft)
@@ -72,12 +75,12 @@ public class Player : MonoBehaviour
     {
         float extraHeight = 0.05f;
         float sideBuffer = 0.01f;
-        float size = bc.bounds.size.x;
-        Vector3 startPos = bc.bounds.center + Vector3.right * size / 2 + Vector3.left * sideBuffer;
-        RaycastHit2D rh1 = Physics2D.Raycast(startPos, Vector2.down, bc.bounds.extents.y + extraHeight, platformLayerMask);
-        startPos = bc.bounds.center + Vector3.left * size / 2 + Vector3.right * sideBuffer;
-        RaycastHit2D rh2 = Physics2D.Raycast(startPos, Vector2.down, bc.bounds.extents.y + extraHeight, platformLayerMask);
-        // Debug.DrawRay(bc.bounds.center + Vector3.right * size / 2 + Vector3.left * sideBuffer, Vector2.down * (bc.bounds.extents.y + extraHeight));
+        float size = cc.bounds.size.x;
+        Vector3 startPos = cc.bounds.center + Vector3.right * size / 2 + Vector3.left * sideBuffer;
+        RaycastHit2D rh1 = Physics2D.Raycast(startPos, Vector2.down, cc.bounds.extents.y + extraHeight, platformLayerMask);
+        startPos = cc.bounds.center + Vector3.left * size / 2 + Vector3.right * sideBuffer;
+        RaycastHit2D rh2 = Physics2D.Raycast(startPos, Vector2.down, cc.bounds.extents.y + extraHeight, platformLayerMask);
+        Debug.DrawRay(cc.bounds.center + Vector3.right * size / 2 + Vector3.left * sideBuffer, Vector2.down * (cc.bounds.extents.y + extraHeight));
         return rh1.collider != null || rh2.collider != null;
     }
 }
