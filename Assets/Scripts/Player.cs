@@ -76,6 +76,13 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(0, rb.velocity.y);
             animator.SetFloat("Speed", 0);
         }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            animator.SetBool("isDuck", true);
+        }else{
+            animator.SetBool("isDuck", false);
+        }
     }
 
     private bool isGrounded()
