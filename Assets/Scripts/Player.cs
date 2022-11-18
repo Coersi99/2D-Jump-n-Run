@@ -9,6 +9,11 @@ public class Player : MonoBehaviour
 
     public Animator animator;
 
+    //Shader 
+    Material material;
+    float fade = 0f;
+    bool isDissolving = true;
+
     Rigidbody2D rb;
     BoxCollider2D bc;
     CircleCollider2D cc;
@@ -31,6 +36,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
         cc = GetComponent<CircleCollider2D>();
+        material = GetComponent<SpriteRenderer>().material;
         facingRight = new Vector2(transform.localScale.x, transform.localScale.y);
         facingLeft = new Vector2(-transform.localScale.x, transform.localScale.y);
         if(spawnFacingLeft)
@@ -53,6 +59,19 @@ public class Player : MonoBehaviour
         {
             projectilePool.SpawnObject(isFacingRight, bc.bounds.center, bc.bounds.size.x);
         }
+
+        // dissolve shader
+        if(isDissolving)
+        {
+            fade += Time.deltaTime/2;
+            if(fade >= 1f)
+            {
+                fade = 1;
+                isDissolving = false;
+            }
+            material.SetFloat("_Fade", fade);
+        }
+        
     }
 
     private void FixedUpdate()

@@ -6,6 +6,12 @@ public class Enemy1 : MonoBehaviour
 {
     [SerializeField] private LayerMask platformLayerMask;
 
+    //Shader 
+    Material material;
+    float fade = 0f;
+    bool isDissolving = true;
+    Color dissolve_color = new Color(0.56f, 0.2f, 0, 1);
+
     Rigidbody2D rb;
     BoxCollider2D bc;
     [SerializeField] bool facingRight = true;
@@ -16,11 +22,27 @@ public class Enemy1 : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
+        material = GetComponent<SpriteRenderer>().material;
+        material.SetColor("_Color", dissolve_color);
+        material.SetFloat("_Scale", 40f);
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        // dissolve shader
+        if(isDissolving)
+        {
+            fade += Time.deltaTime/2;
+            if(fade >= 1f)
+            {
+                fade = 1;
+                isDissolving = false;
+            }
+            material.SetFloat("_Fade", fade);
+        }
+
         moveBackAndForth();
     }
 
