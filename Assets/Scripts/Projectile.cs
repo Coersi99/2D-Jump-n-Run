@@ -27,11 +27,16 @@ public class Projectile : MonoBehaviour
 
     public void setAttributes(int id, bool facingRight)
     {
-        this.id = id;
+        setId(id);
         if (facingRight)
             direction = Vector3.right;
         else
             direction = Vector3.left;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
     }
 
     public void setProjectilePool(ProjectilePool pool)
