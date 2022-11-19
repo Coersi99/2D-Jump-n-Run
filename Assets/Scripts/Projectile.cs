@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] float speed = 1f;
     private Vector3 direction;
     private ProjectilePool projectilePool;
+    [SerializeField] float timeToLive = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,11 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         transform.Translate(direction * Time.deltaTime * speed);
+        timeToLive -= Time.deltaTime;
+        if (timeToLive < 0)
+        {
+            projectilePool.GetComponent<ProjectilePool>().DestroyObject(id);
+        }
     }
 
 
