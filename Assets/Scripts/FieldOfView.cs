@@ -36,7 +36,17 @@ public class FieldOfView : MonoBehaviour
         Collider2D[] rangeCheck = Physics2D.OverlapCircleAll(transform.position, shortRadius, targetLayer);
         if (rangeCheck.Length > 0)
         {
-            CanSeePlayer = true;
+            Transform target = rangeCheck[0].transform;
+            Vector2 directionToTarget = (target.position - transform.position).normalized;
+            float distanceToTarget = Vector2.Distance(transform.position, target.position);
+            if (!Physics2D.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionLayer))   // true if ray does not hit obstruction
+            {
+                CanSeePlayer = true;
+            }
+            else
+            {
+                CanSeePlayer = false;
+            }
         }
         else
         {

@@ -11266,6 +11266,7 @@ GameObject:
   - component: {fileID: 1722305437}
   - component: {fileID: 1722305436}
   - component: {fileID: 1722305440}
+  - component: {fileID: 1722305441}
   m_Layer: 15
   m_Name: Enemy1
   m_TagString: Untagged
@@ -11404,6 +11405,28 @@ MonoBehaviour:
     m_Bits: 1024
   facingRight: 1
   speed: 1
+--- !u!114 &1722305441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722305435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf454f4e50b04eee8afb9996713f366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bigRadius: 5
+  shortRadius: 2
+  angle: 45
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  obstructionLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  playerRef: {fileID: 0}
 --- !u!1 &1731885791
 GameObject:
   m_ObjectHideFlags: 0
@@ -11421,7 +11444,7 @@ GameObject:
   - component: {fileID: 1731885800}
   m_Layer: 11
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
