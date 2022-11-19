@@ -10,12 +10,14 @@ public class Projectile : MonoBehaviour
     [SerializeField] float speed = 1f;
     private Vector3 direction;
     private ProjectilePool projectilePool;
-    [SerializeField] float timeToLive = 10f;
+    [SerializeField] float timeToLiveLimit = 10f;
+    private float timeToLive;
 
     // Start is called before the first frame update
     void Start()
     {
         bc = GetComponent<BoxCollider2D>();
+
     }
 
     // Update is called once per frame
@@ -38,6 +40,7 @@ public class Projectile : MonoBehaviour
             direction = Vector3.right;
         else
             direction = Vector3.left;
+        timeToLive = timeToLiveLimit;
     }
 
     public void setId(int id)
@@ -52,6 +55,10 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        projectilePool.GetComponent<ProjectilePool>().DestroyObject(id);
+        if (!collision.gameObject.CompareTag("Player"))
+        {
+            projectilePool.GetComponent<ProjectilePool>().DestroyObject(id);
+        }
+            
     }
 }
