@@ -65,15 +65,7 @@ public class Enemy1 : MonoBehaviour
         float extraDepth = 0.05f;
         float sideBuffer = 0.01f;
         float size = bc.bounds.size.y;
-        Vector3 dir;
-        if (facingRight)
-        {
-            dir = Vector3.right;
-        }
-        else
-        {
-            dir = Vector3.left;
-        }
+        Vector3 dir = getDirection();
         Vector3 startPos = bc.bounds.center + Vector3.up * size / 2 + Vector3.down * sideBuffer;
         RaycastHit2D rhUp = Physics2D.Raycast(startPos, dir, bc.bounds.extents.x + extraDepth, platformLayerMask);
         // Debug.DrawRay(startPos, dir * (bc.bounds.extents.y + extraDepth));
@@ -104,5 +96,17 @@ public class Enemy1 : MonoBehaviour
         RaycastHit2D rh = Physics2D.Raycast(startPos, Vector2.down, bc.bounds.extents.y + extraHeight, platformLayerMask);
         // Debug.DrawRay(startPos, Vector2.down * (bc.bounds.extents.y + extraHeight));
         return rh.collider == null;
+    }
+
+    public Vector3 getDirection()
+    {
+        if (facingRight)
+        {
+            return Vector3.right;
+        }
+        else
+        {
+            return Vector3.left;
+        }
     }
 }

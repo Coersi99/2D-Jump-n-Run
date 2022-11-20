@@ -69,6 +69,7 @@ public class ProjectilePool : MonoBehaviour
 
         // swap with last activated object to keep the list sorted
         var tmp = poolObjects[destroyIndex];
+        poolObjects[nrOfActiveObjects - 1].GetComponent<Projectile>().setId(destroyIndex);
         poolObjects[destroyIndex] = poolObjects[nrOfActiveObjects - 1];
         poolObjects[nrOfActiveObjects - 1] = tmp;
 
