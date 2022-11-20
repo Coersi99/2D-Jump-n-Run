@@ -14,7 +14,9 @@ public class Enemy1 : MonoBehaviour
 
     Rigidbody2D rb;
     BoxCollider2D bc;
-    [SerializeField] bool facingRight = true;
+    CircleCollider2D cc;
+
+    [SerializeField] bool isFacingRight = true;
     [SerializeField] private float speed = 10f;
 
     // Start is called before the first frame update
@@ -22,6 +24,7 @@ public class Enemy1 : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
+        cc = GetComponent<CircleCollider2D>();
         material = GetComponent<SpriteRenderer>().material;
         material.SetColor("_Color", dissolve_color);
         material.SetFloat("_Scale", 40f);
@@ -48,12 +51,15 @@ public class Enemy1 : MonoBehaviour
 
     private void moveBackAndForth()
     {
-        if (reachedEdge(facingRight) || bumpedIntoWall(facingRight))
+        if (reachedEdge(isFacingRight) || bumpedIntoWall(isFacingRight))
         {
-            facingRight = !facingRight;
+            //Visually change direction of Sprite
+            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+
+            isFacingRight = !isFacingRight;
         }
         int direction = -1;
-        if (facingRight)
+        if (isFacingRight)
         {
             direction = 1;
         }
@@ -68,10 +74,10 @@ public class Enemy1 : MonoBehaviour
         Vector3 dir = getDirection();
         Vector3 startPos = bc.bounds.center + Vector3.up * size / 2 + Vector3.down * sideBuffer;
         RaycastHit2D rhUp = Physics2D.Raycast(startPos, dir, bc.bounds.extents.x + extraDepth, platformLayerMask);
-        // Debug.DrawRay(startPos, dir * (bc.bounds.extents.y + extraDepth));
+        Debug.DrawRay(startPos, dir * (bc.bounds.extents.y + extraDepth));
         startPos = bc.bounds.center + Vector3.down * size / 2 + Vector3.up * sideBuffer;
         RaycastHit2D rhDown = Physics2D.Raycast(startPos, dir, bc.bounds.extents.x + extraDepth, platformLayerMask);
-        // Debug.DrawRay(startPos, dir * (bc.bounds.extents.y + extraDepth));
+        Debug.DrawRay(startPos, dir * (bc.bounds.extents.y + extraDepth));
         return rhUp.collider != null || rhDown.collider != null;
     }
 
@@ -79,10 +85,10 @@ public class Enemy1 : MonoBehaviour
     {
         float extraHeight = 0.05f;
         float sideBuffer = 0.01f;
-        float size = bc.bounds.size.x;
+        float size = cc.bounds.size.x;
         Vector3 dirBig;
         Vector3 dirSmall;
-        if (facingRight)
+        if (isFacingRight)
         {
             dirBig = Vector3.right;
             dirSmall= Vector3.left;
@@ -92,15 +98,15 @@ public class Enemy1 : MonoBehaviour
             dirBig = Vector3.left;
             dirSmall = Vector3.right;
         }
-        Vector3 startPos = bc.bounds.center + dirBig * size / 2 + dirSmall * sideBuffer;
-        RaycastHit2D rh = Physics2D.Raycast(startPos, Vector2.down, bc.bounds.extents.y + extraHeight, platformLayerMask);
-        // Debug.DrawRay(startPos, Vector2.down * (bc.bounds.extents.y + extraHeight));
+        Vector3 startPos = cc.bounds.center + dirBig * size / 2 + dirSmall * sideBuffer;
+        RaycastHit2D rh = Physics2D.Raycast(startPos, Vector2.down, cc.bounds.extents.y + extraHeight, platformLayerMask);
+        // Debug.DrawRay(startPos, Vector2.down * (cc.bounds.extents.y + extraHeight));
         return rh.collider == null;
     }
 
     public Vector3 getDirection()
     {
-        if (facingRight)
+        if (isFacingRight)
         {
             return Vector3.right;
         }
