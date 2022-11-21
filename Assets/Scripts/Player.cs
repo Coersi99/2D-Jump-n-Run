@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             projectilePool.SpawnObject(isFacingRight, bc.bounds.center, bc.bounds.size.x);
+            animator.SetTrigger("Shoot");
         }
 
         // dissolve shader
