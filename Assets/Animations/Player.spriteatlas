@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Player
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: c464bfe3e8f140640884a87611b097ed, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 2db3c041074b9f04781609ea019acfa4, type: 3}
+  - {fileID: 564405046, guid: 17bec8222f5136b448c44d1fc47c4a2b, type: 3}
+  - {fileID: 621092051, guid: 17bec8222f5136b448c44d1fc47c4a2b, type: 3}
+  - {fileID: 1912267241, guid: 17bec8222f5136b448c44d1fc47c4a2b, type: 3}
+  - {fileID: 263052385, guid: 254d9f3365d0fdd4db33cc491da2af28, type: 3}
+  - {fileID: 1940768583, guid: 254d9f3365d0fdd4db33cc491da2af28, type: 3}
+  - {fileID: -934489044, guid: 254d9f3365d0fdd4db33cc491da2af28, type: 3}
+  - {fileID: -444475101, guid: 254d9f3365d0fdd4db33cc491da2af28, type: 3}
+  - {fileID: -695759222, guid: 254d9f3365d0fdd4db33cc491da2af28, type: 3}
+  - {fileID: -1110213850, guid: 254d9f3365d0fdd4db33cc491da2af28, type: 3}
+  - {fileID: -167812978, guid: 254d9f3365d0fdd4db33cc491da2af28, type: 3}
+  - {fileID: 1753840338, guid: 254d9f3365d0fdd4db33cc491da2af28, type: 3}
+  - {fileID: 723392276, guid: dde5e5843173bbd4689e87852b11656f, type: 3}
+  - {fileID: -125812808, guid: dde5e5843173bbd4689e87852b11656f, type: 3}
+  - {fileID: -2075205378, guid: dde5e5843173bbd4689e87852b11656f, type: 3}
+  - {fileID: 84694611, guid: dde5e5843173bbd4689e87852b11656f, type: 3}
+  - {fileID: 21300000, guid: 6f7ecf05b2bd84d42935efda52858e99, type: 3}
+  - {fileID: 21300000, guid: 9a7b1b67210203543b3db6885321aa4c, type: 3}
+  - {fileID: 21300000, guid: a5bc3da740f5ad34fb0258a483288e29, type: 3}
+  - {fileID: 21300000, guid: b54b208aed7cba340bb76e626ed67451, type: 3}
+  - {fileID: 21300000, guid: 7c2a41aa36634d245ad62606fe688caa, type: 3}
+  - {fileID: 21300000, guid: 937315fa330fd8f4496642fb1ae14324, type: 3}
+  - {fileID: 21300000, guid: b259a35b9c2b3454a9960b2be2f8eb51, type: 3}
+  - {fileID: -1082671545, guid: d571c77d8274dd649a598b6f196b9311, type: 3}
+  - {fileID: 1389214333, guid: d571c77d8274dd649a598b6f196b9311, type: 3}
+  - {fileID: -1341649967, guid: d571c77d8274dd649a598b6f196b9311, type: 3}
+  - {fileID: -1746647158, guid: d571c77d8274dd649a598b6f196b9311, type: 3}
+  - {fileID: -934500526, guid: d571c77d8274dd649a598b6f196b9311, type: 3}
+  - {fileID: -425523489, guid: ff6bfb6ee26145e44b4ff87bc8c9c63c, type: 3}
+  - {fileID: 21300000, guid: 755267af4a90ff943b536555deda393a, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - GAS dash with FX
+  - shoot FX_2
+  - shoot FX_1
+  - shoot FX_0
+  - move with FX_7
+  - move with FX_6
+  - move with FX_5
+  - move with FX_4
+  - move with FX_3
+  - move with FX_2
+  - move with FX_1
+  - move with FX_0
+  - shoot with FX_2
+  - shoot with FX_0
+  - shoot with FX_6
+  - shoot with FX_5
+  - idle
+  - shoot without FX
+  - death
+  - move FX
+  - charge
+  - damaged
+  - GAS dash FX
+  - wake_4
+  - wake_2
+  - wake_3
+  - wake_0
+  - wake_1
+  - static idle_0
+  - move without FX
+  m_RenderDataMap: {}
+  m_Tag: Player
+  m_IsVariant: 0
