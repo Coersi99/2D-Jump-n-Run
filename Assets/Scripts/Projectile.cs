@@ -12,6 +12,7 @@ public class Projectile : MonoBehaviour
     private ProjectilePool projectilePool;
     [SerializeField] float timeToLiveLimit = 10f;
     private float timeToLive;
+    private bool hasNotCollided;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,7 @@ public class Projectile : MonoBehaviour
 
     public void setAttributes(int id, bool facingRight)
     {
+        hasNotCollided = true;
         setId(id);
         if (facingRight)
             direction = Vector3.right;
@@ -55,10 +57,14 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!collision.gameObject.CompareTag("Player"))
+        if (hasNotCollided)
         {
-            projectilePool.GetComponent<ProjectilePool>().DestroyObject(id);
+            if (!collision.gameObject.CompareTag("Player"))
+            {
+                projectilePool.GetComponent<ProjectilePool>().DestroyObject(id);
+                hasNotCollided = false;
+            }
         }
-            
+        
     }
 }
