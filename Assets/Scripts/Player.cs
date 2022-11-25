@@ -7,58 +7,51 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private LayerMask platformLayerMask;
 
+    public CharacterController2D controller;
     public Animator animator;
+
+    float horizontalMove = 0f;
+    [SerializeField] private float runSpeed = 40f;
+    bool jump = false;
+    bool crouch = false;
+    [SerializeField] private int maxLeft = -7;
+    [SerializeField] private int maxRight = 10;
 
     //Shader 
     Material material;
     float fade = 0f;
     bool isDissolving = true;
 
-    Rigidbody2D rb;
-    BoxCollider2D bc;
-    CircleCollider2D cc;
-    [SerializeField] private float jumpForce = 30f;
-    [SerializeField] private float speed = 10f;
-    [SerializeField] private int maxLeft = -7;
-    [SerializeField] private int maxRight = 10;
-    [SerializeField] ProjectilePool projectilePool;
-
-    private bool isFacingRight = true;
-
-    //Movement direction
-    [SerializeField] bool spawnFacingLeft;
-    private Vector2 facingLeft;
-    private Vector2 facingRight;
-
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        bc = GetComponent<BoxCollider2D>();
-        cc = GetComponent<CircleCollider2D>();
         material = GetComponent<SpriteRenderer>().material;
-        facingRight = new Vector2(transform.localScale.x, transform.localScale.y);
-        facingLeft = new Vector2(-transform.localScale.x, transform.localScale.y);
-        if(spawnFacingLeft)
-        {
-            transform.localScale = facingLeft;
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isGrounded() && Input.GetButtonDown("Jump"))
+
+        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+
+        //trigger Jump
+        if (Input.GetButtonDown("Jump"))
         {
-            rb.velocity = Vector2.up * jumpForce;
+            jump = true;
+            //rb.velocity = Vector2.up * jumpForce;
             animator.SetTrigger("Jump");
         }
 
-        // shooting
-        if (Input.GetKeyDown(KeyCode.K))
+        //enable Crouch
+        if (Input.GetButtonDown("Crouch"))
         {
-            projectilePool.SpawnObject(isFacingRight, bc.bounds.center, bc.bounds.size.x);
-            animator.SetTrigger("Shoot");
+            crouch = true;
+
+        } else if(Input.GetButtonUp("Crouch"))
+        {
+            crouch = false;
         }
 
         // dissolve shader
@@ -77,6 +70,13 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        if (transform.position.x < maxRight && transform.position.x > maxLeft){
+            controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);  
+        }
+        jump = false;
+
+        /*
         if (Input.GetKey(KeyCode.A) && transform.position.x > maxLeft)
         {
             rb.velocity = new Vector2(-speed, rb.velocity.y);
@@ -102,9 +102,17 @@ public class Player : MonoBehaviour
             animator.SetBool("isDuck", true);
         }else{
             animator.SetBool("isDuck", false);
-        }
+        }*/
+
+
     }
 
+    public void OnCrouching (bool isCrouching)
+    {
+        animator.SetBool("IsCrouching", isCrouching);
+    }
+
+    /*
     private bool isGrounded()
     {
         float extraHeight = 0.05f;
@@ -116,5 +124,5 @@ public class Player : MonoBehaviour
         RaycastHit2D rh2 = Physics2D.Raycast(startPos, Vector2.down, cc.bounds.extents.y + extraHeight, platformLayerMask);
         Debug.DrawRay(cc.bounds.center + Vector3.right * size / 2 + Vector3.left * sideBuffer, Vector2.down * (cc.bounds.extents.y + extraHeight));
         return rh1.collider != null || rh2.collider != null;
-    }
+    }*/
 }
