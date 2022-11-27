@@ -12,9 +12,13 @@ public class Enemy1 : MonoBehaviour
     bool isDissolving = true;
     Color dissolve_color = new Color(0.56f, 0.2f, 0, 1);
 
+    public float attackRange = 1f;
+
+    Transform player;
     Rigidbody2D rb;
     BoxCollider2D bc;
     CircleCollider2D cc;
+    EnemyWeapon weapon;
 
     [SerializeField] bool isFacingRight = true;
     [SerializeField] private float speed = 10f;
@@ -25,6 +29,8 @@ public class Enemy1 : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
         cc = GetComponent<CircleCollider2D>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        weapon = GetComponent<EnemyWeapon>();
         material = GetComponent<SpriteRenderer>().material;
         material.SetColor("_Color", dissolve_color);
         material.SetFloat("_Scale", 40f);
@@ -35,7 +41,7 @@ public class Enemy1 : MonoBehaviour
     {
 
         // dissolve shader
-        if(isDissolving)
+        if (isDissolving)
         {
             fade += Time.deltaTime/2;
             if(fade >= 1f)
@@ -47,6 +53,12 @@ public class Enemy1 : MonoBehaviour
         }
 
         moveBackAndForth();
+
+        if (Vector2.Distance(player.position, rb.position) <= attackRange)
+        {
+            weapon.Attack();
+        }
+
     }
 
     private void moveBackAndForth()
