@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static FieldOfView;
 
 public class Enemy1 : MonoBehaviour
 {
@@ -12,16 +13,16 @@ public class Enemy1 : MonoBehaviour
     bool isDissolving = true;
     Color dissolve_color = new Color(0.56f, 0.2f, 0, 1);
 
-    public float attackRange = 1f;
-
-    Transform player;
     Rigidbody2D rb;
     BoxCollider2D bc;
     CircleCollider2D cc;
-    EnemyWeapon weapon;
+    FieldOfView fieldOfView;
+
+    public GameObject playerRef;
 
     [SerializeField] bool isFacingRight = true;
-    [SerializeField] private float speed = 10f;
+    [SerializeField] private float speed = 1f;
+    [SerializeField] private float attackSpeed = 3f;
 
     // Start is called before the first frame update
     void Start()
@@ -29,8 +30,9 @@ public class Enemy1 : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
         cc = GetComponent<CircleCollider2D>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        weapon = GetComponent<EnemyWeapon>();
+        cc = GetComponent<CircleCollider2D>();
+        fieldOfView = GetComponent<FieldOfView>();
+        playerRef = GameObject.FindGameObjectWithTag("Player");
         material = GetComponent<SpriteRenderer>().material;
         material.SetColor("_Color", dissolve_color);
         material.SetFloat("_Scale", 40f);
@@ -41,7 +43,7 @@ public class Enemy1 : MonoBehaviour
     {
 
         // dissolve shader
-        if (isDissolving)
+        if(isDissolving)
         {
             fade += Time.deltaTime/2;
             if(fade >= 1f)
@@ -52,13 +54,46 @@ public class Enemy1 : MonoBehaviour
             material.SetFloat("_Fade", fade);
         }
 
-        moveBackAndForth();
-
-        if (Vector2.Distance(player.position, rb.position) <= attackRange)
+        if (fieldOfView.GetCurrentState() == enemyState.idleState)
         {
-            weapon.Attack();
+            moveBackAndForth();
         }
+        else if (fieldOfView.GetCurrentState() == enemyState.aggressiveState)
+        {
+            GoToPlayer();
+        }
+    }
 
+    private void GoToPlayer()
+    {
+        float playerEnemyPosXDiff = playerRef.transform.position.x - this.transform.position.x;
+        if (Mathf.Abs(playerEnemyPosXDiff) >= 0.5f)
+        {
+            if (playerEnemyPosXDiff < 0)
+            {
+                //Visually change direction of Sprite
+                if (isFacingRight)
+                {
+                    transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+                }
+                isFacingRight = false;
+            }
+            else if (playerEnemyPosXDiff > 0)
+            {
+                //Visually change direction of Sprite
+                if (!isFacingRight)
+                {
+                    transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+                }
+                isFacingRight = true;
+            }
+            int direction = -1;
+            if (isFacingRight)
+            {
+                direction = 1;
+            }
+            rb.velocity = new Vector2(direction * attackSpeed, rb.velocity.y);
+        }
     }
 
     private void moveBackAndForth()
