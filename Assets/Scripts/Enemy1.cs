@@ -13,10 +13,13 @@ public class Enemy1 : MonoBehaviour
     bool isDissolving = true;
     Color dissolve_color = new Color(0.56f, 0.2f, 0, 1);
 
+    public float attackRange = 1f;
+
     Rigidbody2D rb;
     BoxCollider2D bc;
     CircleCollider2D cc;
     FieldOfView fieldOfView;
+    EnemyWeapon weapon;
 
     public GameObject playerRef;
 
@@ -31,6 +34,7 @@ public class Enemy1 : MonoBehaviour
         bc = GetComponent<BoxCollider2D>();
         cc = GetComponent<CircleCollider2D>();
         cc = GetComponent<CircleCollider2D>();
+        weapon = GetComponent<EnemyWeapon>();
         fieldOfView = GetComponent<FieldOfView>();
         playerRef = GameObject.FindGameObjectWithTag("Player");
         material = GetComponent<SpriteRenderer>().material;
@@ -52,6 +56,11 @@ public class Enemy1 : MonoBehaviour
                 isDissolving = false;
             }
             material.SetFloat("_Fade", fade);
+        }
+
+        if (Vector2.Distance(playerRef.transform.position, rb.position) <= attackRange)
+        {
+            weapon.Attack();
         }
 
         if (fieldOfView.GetCurrentState() == enemyState.idleState)
