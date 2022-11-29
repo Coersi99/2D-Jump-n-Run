@@ -11,6 +11,8 @@ public class HeartSystem : MonoBehaviour
     private int life;
     private bool dead;
 
+    Transform player;
+
     // public getter for receiving the current Instance of our singleton
     // the setter is private, such that external classes cannot change the reference
     public static HeartSystem Instance { get; private set; }
@@ -32,6 +34,7 @@ public class HeartSystem : MonoBehaviour
     private void Start()
     {
         life = hearts.Length;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update()
@@ -49,6 +52,7 @@ public class HeartSystem : MonoBehaviour
         {
             life -= damage;      
             Destroy(hearts[life].gameObject);
+            player.position = player.position + new Vector3(-1, 0, 0);
             if(life < 1)
             {
              dead = true;
