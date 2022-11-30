@@ -12,8 +12,18 @@ public class EnemyWeapon : MonoBehaviour
 
     public void Attack()
     {
+        //Get pos of enemy
         Vector3 pos = transform.position;
-        pos += transform.right * attackOffset.x;
+        
+        //add x offset, flip if facing left
+        if(transform.localScale.x < 0)
+        {
+            pos += transform.right * attackOffset.x;
+        }else{
+            pos += transform.right * -attackOffset.x;
+        }
+        
+        //check collision with player
         pos += transform.up * attackOffset.y;
 
         Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
@@ -21,6 +31,7 @@ public class EnemyWeapon : MonoBehaviour
         {
             colInfo.GetComponent<HeartSystem>().TakeDamage(attackDamage);
         }
+
     }
 
     void OnDrawGizmosSelected()
@@ -29,7 +40,7 @@ public class EnemyWeapon : MonoBehaviour
         Gizmos.color = Color.yellow;
 
         Vector3 pos = transform.position;
-        pos += transform.right * attackOffset.x;
+        pos += transform.right * -attackOffset.x;
         pos += transform.up * attackOffset.y;
 
         Gizmos.DrawLine(transform.position, pos);

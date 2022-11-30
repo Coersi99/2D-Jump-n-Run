@@ -7,12 +7,6 @@ public class Enemy1 : MonoBehaviour
 {
     [SerializeField] private LayerMask platformLayerMask;
 
-    //Shader 
-    Material material;
-    float fade = 0f;
-    bool isDissolving = true;
-    Color dissolve_color = new Color(0.56f, 0.2f, 0, 1);
-
     public float attackRange = 1f;
 
     Rigidbody2D rb;
@@ -20,6 +14,7 @@ public class Enemy1 : MonoBehaviour
     CircleCollider2D cc;
     FieldOfView fieldOfView;
     EnemyWeapon weapon;
+    public Animator animator;
 
     public GameObject playerRef;
 
@@ -37,31 +32,11 @@ public class Enemy1 : MonoBehaviour
         weapon = GetComponent<EnemyWeapon>();
         fieldOfView = GetComponent<FieldOfView>();
         playerRef = GameObject.FindGameObjectWithTag("Player");
-        material = GetComponent<SpriteRenderer>().material;
-        material.SetColor("_Color", dissolve_color);
-        material.SetFloat("_Scale", 40f);
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        // dissolve shader
-        if(isDissolving)
-        {
-            fade += Time.deltaTime/2;
-            if(fade >= 1f)
-            {
-                fade = 1;
-                isDissolving = false;
-            }
-            material.SetFloat("_Fade", fade);
-        }
-
-        if (Vector2.Distance(playerRef.transform.position, rb.position) <= attackRange)
-        {
-            weapon.Attack();
-        }
 
         if (fieldOfView.GetCurrentState() == enemyState.idleState)
         {
@@ -71,6 +46,7 @@ public class Enemy1 : MonoBehaviour
         {
             GoToPlayer();
         }
+
     }
 
     private void GoToPlayer()
@@ -102,6 +78,7 @@ public class Enemy1 : MonoBehaviour
                 direction = 1;
             }
             rb.velocity = new Vector2(direction * attackSpeed, rb.velocity.y);
+            animator.SetBool("isAttack", true);
         }
     }
 
