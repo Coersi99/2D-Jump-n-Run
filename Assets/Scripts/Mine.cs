@@ -14,6 +14,7 @@ public class Mine : MonoBehaviour
     [SerializeField] float searchRadius = 3.0f;
     [SerializeField] float explodingRadius = 3.0f;
     [SerializeField] float explodingKnockback = 50f;
+    [SerializeField] ParticleSystem explosion;
 
     public int attackDamage = 1;
 
@@ -74,7 +75,8 @@ public class Mine : MonoBehaviour
 
     private void Explode()
     {
-        Collider2D[] rangeCheck = Physics2D.OverlapCircleAll(transform.position, searchRadius, targetLayer);
+        explosion.Play();
+        Collider2D[] rangeCheck = Physics2D.OverlapCircleAll(transform.position, explodingRadius, targetLayer);
         if (rangeCheck.Length > 0)
         {
             Transform target = rangeCheck[0].transform;
