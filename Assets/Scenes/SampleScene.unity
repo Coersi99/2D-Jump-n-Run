@@ -1148,6 +1148,7 @@ MonoBehaviour:
   speed: 3
   searchRadius: 3
   explodingRadius: 3
+  explodingKnockback: 50
   attackDamage: 1
 --- !u!1 &1052977316
 GameObject:
@@ -1517,10 +1518,15 @@ MonoBehaviour:
     m_Bits: 1024
   attackRange: 1
   animator: {fileID: 1241831966}
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 0
   playerRef: {fileID: 0}
   isFacingRight: 1
   speed: 1
   attackSpeed: 20
+  touchKnockback: 50
+  touchDamage: 1
 --- !u!50 &1241831969
 Rigidbody2D:
   serializedVersion: 4
@@ -1679,6 +1685,7 @@ MonoBehaviour:
   attackMask:
     serializedVersion: 2
     m_Bits: 2048
+  knockback: 50
 --- !u!1001 &1269726096
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -80600,10 +80607,15 @@ MonoBehaviour:
     m_Bits: 1024
   attackRange: 1
   animator: {fileID: 1722305443}
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 2048
   playerRef: {fileID: 0}
   isFacingRight: 1
   speed: 1
   attackSpeed: 2
+  touchKnockback: 50
+  touchDamage: 1
 --- !u!58 &1722305441
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -80708,6 +80720,7 @@ MonoBehaviour:
   attackMask:
     serializedVersion: 2
     m_Bits: 2048
+  knockback: 50
 --- !u!1001 &1725313937
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -81017,6 +81030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+  vulnerabilityTime: 1
   hearts:
   - {fileID: 1052977316}
   - {fileID: 81367645}

@@ -10,9 +10,12 @@ public class HeartSystem : MonoBehaviour
     //Player's rigidbody
     private Rigidbody2D rb;
 
+    public float vulnerabilityTime = 1f;
     public GameObject[] hearts;
     private int life;
     private bool dead;
+    private bool isVulnerable = true;
+    private float secondsCount = 0f;
 
     // public getter for receiving the current Instance of our singleton
     // the setter is private, such that external classes cannot change the reference
@@ -44,12 +47,18 @@ public class HeartSystem : MonoBehaviour
         {
            
         }
+
+        secondsCount += Time.deltaTime;
+
+        if(secondsCount >= vulnerabilityTime){
+            isVulnerable = true;
+        }
     }
 
     // Triggered once the player takes damage
     public void TakeDamage(int damage, float enemyKnockback, float direction)
     {
-        if(life >= 1)
+        if(life >= 1 && isVulnerable)
         {
             life -= damage;      
             Destroy(hearts[life].gameObject);
@@ -64,7 +73,8 @@ public class HeartSystem : MonoBehaviour
             }else{
                 rb.velocity = new Vector2(enemyKnockback, rb.velocity.y);
             }
-            
+            isVulnerable = false;
+            secondsCount = 0f;
         }
 
     }

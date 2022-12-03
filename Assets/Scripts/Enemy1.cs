@@ -15,12 +15,15 @@ public class Enemy1 : MonoBehaviour
     FieldOfView fieldOfView;
     EnemyWeapon weapon;
     public Animator animator;
+    public LayerMask enemyMask;
 
     public GameObject playerRef;
 
     [SerializeField] bool isFacingRight = true;
     [SerializeField] private float speed = 1f;
     [SerializeField] private float attackSpeed = 3f;
+    [SerializeField] float touchKnockback = 50f;
+    [SerializeField] int touchDamage = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +49,12 @@ public class Enemy1 : MonoBehaviour
         {
             GoToPlayer();
         }
+
+    }
+
+    private void FixedUpdate() {
+
+        touchPlayer();
 
     }
 
@@ -79,6 +88,15 @@ public class Enemy1 : MonoBehaviour
             }
             rb.velocity = new Vector2(direction * attackSpeed, rb.velocity.y);
             animator.SetBool("isAttack", true);
+        }
+    }
+
+    public void touchPlayer()
+    {
+        Collider2D colInfo = Physics2D.OverlapCircle(transform.position, attackRange, enemyMask);
+        if(colInfo != null)
+        {
+            colInfo.GetComponent<HeartSystem>().TakeDamage(touchDamage, touchKnockback, transform.localScale.x);
         }
     }
 
