@@ -7,6 +7,9 @@ public class HeartSystem : MonoBehaviour
     // not required in the singleton pattern, but helps us tracking which object survived
     [SerializeField] int id;
 
+    //Player's rigidbody
+    private Rigidbody2D rb;
+
     public GameObject[] hearts;
     private int life;
     private bool dead;
@@ -32,6 +35,7 @@ public class HeartSystem : MonoBehaviour
     private void Start()
     {
         life = hearts.Length;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -43,7 +47,7 @@ public class HeartSystem : MonoBehaviour
     }
 
     // Triggered once the player takes damage
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, float enemyKnockback, float direction)
     {
         if(life >= 1)
         {
@@ -53,6 +57,14 @@ public class HeartSystem : MonoBehaviour
             {
              dead = true;
             }
+
+            if(direction < 0)
+            {
+                rb.velocity = new Vector2(-enemyKnockback, rb.velocity.y);
+            }else{
+                rb.velocity = new Vector2(enemyKnockback, rb.velocity.y);
+            }
+            
         }
 
     }

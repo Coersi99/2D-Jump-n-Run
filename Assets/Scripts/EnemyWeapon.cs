@@ -9,6 +9,7 @@ public class EnemyWeapon : MonoBehaviour
     public Vector3 attackOffset;
     public float attackRange = 1f;
     public LayerMask attackMask;
+    public float knockback = 50f;
 
     public void Attack()
     {
@@ -29,7 +30,7 @@ public class EnemyWeapon : MonoBehaviour
         Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
         if(colInfo != null)
         {
-            colInfo.GetComponent<HeartSystem>().TakeDamage(attackDamage);
+            colInfo.GetComponent<HeartSystem>().TakeDamage(attackDamage, knockback, transform.localScale.x);
         }
 
     }
