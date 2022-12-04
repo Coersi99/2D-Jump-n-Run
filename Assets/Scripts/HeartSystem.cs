@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HeartSystem : MonoBehaviour
 {
@@ -57,6 +58,10 @@ public class HeartSystem : MonoBehaviour
         if(secondsCount >= vulnerabilityTime){
             isVulnerable = true;
         }
+    }
+
+    private void RestartLevel(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     // Triggered once the player takes damage
