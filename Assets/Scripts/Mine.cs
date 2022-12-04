@@ -75,7 +75,7 @@ public class Mine : MonoBehaviour
 
     private void Explode()
     {
-        explosion.Play();
+        Instantiate(explosion, transform.position, Quaternion.identity);
         Collider2D[] rangeCheck = Physics2D.OverlapCircleAll(transform.position, explodingRadius, targetLayer);
         if (rangeCheck.Length > 0)
         {
