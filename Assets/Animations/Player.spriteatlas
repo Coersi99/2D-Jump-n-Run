@@ -68,7 +68,12 @@ SpriteAtlas:
   - {fileID: 84694611, guid: dde5e5843173bbd4689e87852b11656f, type: 3}
   - {fileID: 21300000, guid: 6f7ecf05b2bd84d42935efda52858e99, type: 3}
   - {fileID: 21300000, guid: 9a7b1b67210203543b3db6885321aa4c, type: 3}
-  - {fileID: 21300000, guid: a5bc3da740f5ad34fb0258a483288e29, type: 3}
+  - {fileID: 609619238, guid: a5bc3da740f5ad34fb0258a483288e29, type: 3}
+  - {fileID: 651694832, guid: a5bc3da740f5ad34fb0258a483288e29, type: 3}
+  - {fileID: 1910927508, guid: a5bc3da740f5ad34fb0258a483288e29, type: 3}
+  - {fileID: -1128967712, guid: a5bc3da740f5ad34fb0258a483288e29, type: 3}
+  - {fileID: -1086574406, guid: a5bc3da740f5ad34fb0258a483288e29, type: 3}
+  - {fileID: 1074006034, guid: a5bc3da740f5ad34fb0258a483288e29, type: 3}
   - {fileID: 21300000, guid: b54b208aed7cba340bb76e626ed67451, type: 3}
   - {fileID: 21300000, guid: 7c2a41aa36634d245ad62606fe688caa, type: 3}
   - {fileID: 21300000, guid: 937315fa330fd8f4496642fb1ae14324, type: 3}
@@ -99,7 +104,12 @@ SpriteAtlas:
   - shoot with FX_5
   - idle
   - shoot without FX
-  - death
+  - death_4
+  - death_5
+  - death_2
+  - death_3
+  - death_0
+  - death_1
   - move FX
   - charge
   - damaged

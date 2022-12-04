@@ -9,6 +9,7 @@ public class HeartSystem : MonoBehaviour
 
     //Player's rigidbody
     private Rigidbody2D rb;
+    public Animator animator;
 
     public float vulnerabilityTime = 1f;
     public GameObject[] hearts;
@@ -45,7 +46,10 @@ public class HeartSystem : MonoBehaviour
     {
         if(dead)
         {
-           
+            animator.SetTrigger("Death");
+            rb.bodyType = RigidbodyType2D.Static;
+            GetComponent<CharacterController2D>().enabled = false;
+            GetComponent<Player>().enabled = false;
         }
 
         secondsCount += Time.deltaTime;
