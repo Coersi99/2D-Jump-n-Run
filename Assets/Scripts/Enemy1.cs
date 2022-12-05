@@ -15,7 +15,6 @@ public class Enemy1 : MonoBehaviour
     FieldOfView fieldOfView;
     EnemyWeapon weapon;
     public Animator animator;
-    public LayerMask enemyMask;
 
     public GameObject playerRef;
 
@@ -52,12 +51,6 @@ public class Enemy1 : MonoBehaviour
 
     }
 
-    private void FixedUpdate() {
-
-        touchPlayer();
-
-    }
-
     private void GoToPlayer()
     {
         float playerEnemyPosXDiff = playerRef.transform.position.x - this.transform.position.x;
@@ -91,12 +84,11 @@ public class Enemy1 : MonoBehaviour
         }
     }
 
-    public void touchPlayer()
+    //Check for collision with player and then call TakeDamage()
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        Collider2D colInfo = Physics2D.OverlapCircle(transform.position, attackRange, enemyMask);
-        if(colInfo != null)
-        {
-            colInfo.GetComponent<HeartSystem>().TakeDamage(touchDamage, touchKnockback, transform.localScale.x);
+        if(other.gameObject.tag == "Player"){
+            other.gameObject.GetComponent<HeartSystem>().TakeDamage(touchDamage, touchKnockback, transform.localScale.x);
         }
     }
 

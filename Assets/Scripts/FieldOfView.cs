@@ -83,7 +83,6 @@ public class FieldOfView : MonoBehaviour
     private IEnumerator Attack()
     {
         yield return new WaitForSeconds(secondsTillAttack);
-        print("Attack!!");
         currentState = enemyState.aggressiveState;
     }
 

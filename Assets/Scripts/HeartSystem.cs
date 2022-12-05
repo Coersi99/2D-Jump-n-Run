@@ -11,6 +11,8 @@ public class HeartSystem : MonoBehaviour
     //Player's rigidbody
     private Rigidbody2D rb;
     public Animator animator;
+    public Material invincibilityShader;
+    Material material;
 
     public float vulnerabilityTime = 1f;
     public GameObject[] hearts;
@@ -41,6 +43,7 @@ public class HeartSystem : MonoBehaviour
     {
         life = hearts.Length;
         rb = GetComponent<Rigidbody2D>();
+        material = GetComponent<SpriteRenderer>().material;
     }
 
     void Update()
@@ -58,6 +61,7 @@ public class HeartSystem : MonoBehaviour
         if(secondsCount >= vulnerabilityTime){
             isVulnerable = true;
         }
+
     }
 
     private void RestartLevel(){
@@ -71,19 +75,26 @@ public class HeartSystem : MonoBehaviour
         {
             life -= damage;      
             Destroy(hearts[life].gameObject);
+
             if(life < 1)
             {
              dead = true;
+            }else{
+                
+                if(direction < 0)
+                {
+                    rb.velocity = new Vector2(-enemyKnockback, 15);
+                }else{
+                    rb.velocity = new Vector2(enemyKnockback, 15);
+                }
+
+                animator.SetTrigger("Hit");
+                GetComponent<SimpleFlash>().Flash();
             }
 
-            if(direction < 0)
-            {
-                rb.velocity = new Vector2(-enemyKnockback, rb.velocity.y);
-            }else{
-                rb.velocity = new Vector2(enemyKnockback, rb.velocity.y);
-            }
             isVulnerable = false;
             secondsCount = 0f;
+            
         }
 
     }
