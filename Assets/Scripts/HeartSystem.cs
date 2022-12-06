@@ -60,6 +60,7 @@ public class HeartSystem : MonoBehaviour
 
         if(secondsCount >= vulnerabilityTime){
             isVulnerable = true;
+            //GetComponent<Player>().isDamaged = false;
         }
 
     }
@@ -73,6 +74,7 @@ public class HeartSystem : MonoBehaviour
     {
         if(life >= 1 && isVulnerable)
         {
+            //GetComponent<Player>().isDamaged = true;
             life -= damage;      
             Destroy(hearts[life].gameObject);
 
@@ -82,7 +84,7 @@ public class HeartSystem : MonoBehaviour
             }else{
                 
                 if(direction < 0)
-                {
+                {   
                     rb.velocity = new Vector2(-enemyKnockback, 15);
                 }else{
                     rb.velocity = new Vector2(enemyKnockback, 15);

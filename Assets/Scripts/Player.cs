@@ -14,6 +14,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float runSpeed = 40f;
     bool jump = false;
     bool crouch = false;
+
+    //When taking damage, movement should be shortly disabled
+    [System.NonSerialized]
+    public bool isDamaged = false;
+
     [SerializeField] private int maxLeft = -7;
     [SerializeField] private int maxRight = 10;
 
@@ -37,7 +42,7 @@ public class Player : MonoBehaviour
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
         //trigger Jump
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && !isDamaged)
         {
             jump = true;
             //rb.velocity = Vector2.up * jumpForce;
@@ -45,7 +50,7 @@ public class Player : MonoBehaviour
         }
 
         //enable Crouch
-        if (Input.GetButtonDown("Crouch"))
+        if (Input.GetButtonDown("Crouch") && !isDamaged)
         {
             crouch = true;
 
@@ -71,7 +76,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (transform.position.x < maxRight && transform.position.x > maxLeft){
+        if (transform.position.x < maxRight && transform.position.x > maxLeft && !isDamaged){
             controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);  
         }
         jump = false;
