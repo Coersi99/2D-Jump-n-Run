@@ -47,17 +47,6 @@ public class CharacterController2D : MonoBehaviour
 			OnCrouchEvent = new BoolEvent();
 	}
 
-    private void Update()
-    {
-        // shooting
-        if (Input.GetKeyDown(KeyCode.K) && !m_wasCrouching)
-        {
-            projectilePool.SpawnObject(m_FacingRight, bc.bounds.center, bc.bounds.size.x);
-            animator.SetTrigger("Shoot");
-        }
-
-    }
-
 	private void FixedUpdate()
 	{
 		bool wasGrounded = m_Grounded;
@@ -150,9 +139,17 @@ public class CharacterController2D : MonoBehaviour
 		}
 	}
 
+	public void shoot(){
+		if (!m_wasCrouching)
+        {
+            projectilePool.SpawnObject(m_FacingRight, bc.bounds.center, bc.bounds.size.x);
+            animator.SetTrigger("Shoot");
+        }
+	}
+
 
 	private void Flip()
-	{
+	{	
 		// Switch the way the player is labelled as facing.
 		m_FacingRight = !m_FacingRight;
 

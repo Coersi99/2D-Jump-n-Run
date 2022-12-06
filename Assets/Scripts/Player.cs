@@ -59,6 +59,11 @@ public class Player : MonoBehaviour
             crouch = false;
         }
 
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            controller.shoot();
+        }
+
         // dissolve shader
         if(isDissolving)
         {

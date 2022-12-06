@@ -14,7 +14,7 @@ public class Enemy1 : MonoBehaviour
     CircleCollider2D cc;
     FieldOfView fieldOfView;
     EnemyWeapon weapon;
-    public Animator animator;
+    //public Animator animator;
 
     public GameObject playerRef;
 
@@ -80,12 +80,12 @@ public class Enemy1 : MonoBehaviour
                 direction = 1;
             }
             rb.velocity = new Vector2(direction * attackSpeed, rb.velocity.y);
-            animator.SetBool("isAttack", true);
+            //animator.SetBool("isAttack", true);
         }
     }
 
     //Check for collision with player and then call TakeDamage()
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionStay2D(Collision2D other)
     {
         if(other.gameObject.tag == "Player"){
             other.gameObject.GetComponent<HeartSystem>().TakeDamage(touchDamage, touchKnockback, transform.localScale.x);
@@ -113,14 +113,14 @@ public class Enemy1 : MonoBehaviour
     {
         float extraDepth = 0.05f;
         float sideBuffer = 0.01f;
-        float size = bc.bounds.size.y;
+        float size = cc.bounds.size.y;
         Vector3 dir = getDirection();
-        Vector3 startPos = bc.bounds.center + Vector3.up * size / 2 + Vector3.down * sideBuffer;
-        RaycastHit2D rhUp = Physics2D.Raycast(startPos, dir, bc.bounds.extents.x + extraDepth, platformLayerMask);
-        Debug.DrawRay(startPos, dir * (bc.bounds.extents.y + extraDepth));
-        startPos = bc.bounds.center + Vector3.down * size / 2 + Vector3.up * sideBuffer;
-        RaycastHit2D rhDown = Physics2D.Raycast(startPos, dir, bc.bounds.extents.x + extraDepth, platformLayerMask);
-        Debug.DrawRay(startPos, dir * (bc.bounds.extents.y + extraDepth));
+        Vector3 startPos = cc.bounds.center + Vector3.up * size / 2 + Vector3.down * sideBuffer;
+        RaycastHit2D rhUp = Physics2D.Raycast(startPos, dir, cc.bounds.extents.x + extraDepth, platformLayerMask);
+        Debug.DrawRay(startPos, dir * (cc.bounds.extents.y + extraDepth));
+        startPos = cc.bounds.center + Vector3.down * size / 2 + Vector3.up * sideBuffer;
+        RaycastHit2D rhDown = Physics2D.Raycast(startPos, dir, cc.bounds.extents.x + extraDepth, platformLayerMask);
+        Debug.DrawRay(startPos, dir * (cc.bounds.extents.y + extraDepth));
         return rhUp.collider != null || rhDown.collider != null;
     }
 

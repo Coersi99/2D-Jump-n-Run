@@ -39,9 +39,13 @@ public class Projectile : MonoBehaviour
         hasNotCollided = true;
         setId(id);
         if (facingRight)
+        {
             direction = Vector3.right;
+        }
         else
+        {
             direction = Vector3.left;
+        }
         timeToLive = timeToLiveLimit;
     }
 

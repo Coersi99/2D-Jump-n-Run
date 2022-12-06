@@ -11,6 +11,7 @@ public class FieldOfView : MonoBehaviour
     [SerializeField] LayerMask targetLayer;
     [SerializeField] LayerMask obstructionLayer;
     [SerializeField] float secondsTillAttack = 1f;
+    public Animator animator;
 
     public GameObject playerRef;
 
@@ -46,6 +47,7 @@ public class FieldOfView : MonoBehaviour
         {
             currentState = enemyState.attackingState;
             StartCoroutine(Attack());
+            animator.SetBool("isAttack", true);
         }
     }
 
