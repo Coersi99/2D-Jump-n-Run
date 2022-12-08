@@ -18,6 +18,7 @@ public class HeartSystem : MonoBehaviour
     public GameObject[] hearts;
     private int life;
     private bool dead;
+    private bool fellToDeath;
     private bool isVulnerable = true;
     private float secondsCount = 0f;
 
@@ -48,7 +49,12 @@ public class HeartSystem : MonoBehaviour
 
     void Update()
     {
-        if(dead)
+        if (fellToDeath)
+        {
+            print("reached if");
+            StartCoroutine(waitShortlyThenRestart());
+        }
+        else if(dead)
         {
             animator.SetTrigger("Death");
             rb.bodyType = RigidbodyType2D.Static;
@@ -65,6 +71,14 @@ public class HeartSystem : MonoBehaviour
 
     }
 
+    private IEnumerator waitShortlyThenRestart()
+    {
+        print("waiting");
+        yield return new WaitForSeconds(0.5f);
+        print("restarting");
+        RestartLevel();
+    }
+
     private void RestartLevel(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -75,8 +89,14 @@ public class HeartSystem : MonoBehaviour
         if(life >= 1 && isVulnerable)
         {
             //GetComponent<Player>().isDamaged = true;
-            life -= damage;      
-            Destroy(hearts[life].gameObject);
+            //life -= damage;      
+            //Destroy(hearts[life].gameObject);
+            while (life >= 1 && damage > 0)
+            {
+                life--;
+                Destroy(hearts[life].gameObject);
+                damage--;
+            }
 
             if(life < 1)
             {
@@ -98,6 +118,13 @@ public class HeartSystem : MonoBehaviour
             secondsCount = 0f;
             
         }
+    }
 
+    public void fallToDeath()
+    {
+        print("falling to death");
+        isVulnerable = true;
+        fellToDeath = true;
+        TakeDamage(life, 0, 0);
     }
 }
