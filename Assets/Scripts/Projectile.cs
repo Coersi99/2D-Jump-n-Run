@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
     BoxCollider2D bc;
 
     [SerializeField] int id;
-    [SerializeField] float speed = 1f;
+    [SerializeField] float speed = 2f;
     [SerializeField] int damage = 100;
     private Vector3 direction;
     private ProjectilePool projectilePool;
@@ -42,10 +42,12 @@ public class Projectile : MonoBehaviour
         if (facingRight)
         {
             direction = Vector3.right;
+            if(transform.localScale.x<0) transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
         else
         {
             direction = Vector3.left;
+            if(transform.localScale.x>=0) transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
         timeToLive = timeToLiveLimit;
     }
