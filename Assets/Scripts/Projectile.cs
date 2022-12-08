@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
 
     [SerializeField] int id;
     [SerializeField] float speed = 1f;
+    [SerializeField] int damage = 100;
     private Vector3 direction;
     private ProjectilePool projectilePool;
     [SerializeField] float timeToLiveLimit = 10f;
@@ -63,6 +64,10 @@ public class Projectile : MonoBehaviour
     {
         if (hasNotCollided)
         {
+            if(collision.gameObject.CompareTag("BarrelKnight"))
+            {
+                collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+            }
             if (!collision.gameObject.CompareTag("Player"))
             {
                 projectilePool.GetComponent<ProjectilePool>().DestroyObject(id);
