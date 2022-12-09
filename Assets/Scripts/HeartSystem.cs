@@ -60,6 +60,7 @@ public class HeartSystem : MonoBehaviour
             rb.bodyType = RigidbodyType2D.Static;
             GetComponent<CharacterController2D>().enabled = false;
             GetComponent<Player>().enabled = false;
+            StartCoroutine(waitShortlyThenRestart());
         }
 
         secondsCount += Time.deltaTime;
@@ -76,11 +77,11 @@ public class HeartSystem : MonoBehaviour
         print("waiting");
         yield return new WaitForSeconds(0.5f);
         print("restarting");
-        RestartLevel();
+        Restart();
     }
 
-    private void RestartLevel(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    private void Restart(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     // Triggered once the player takes damage
