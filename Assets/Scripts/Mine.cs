@@ -8,6 +8,7 @@ public class Mine : MonoBehaviour
 {
     CircleCollider2D cc;
     public GameObject playerRef;
+    public Animator animator;
     [SerializeField] LayerMask targetLayer;
     [SerializeField] LayerMask obstructionLayer;
     [SerializeField] float speed = 3.0f;
@@ -52,6 +53,7 @@ public class Mine : MonoBehaviour
                 if (!Physics2D.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionLayer))   // true if ray does not hit obstruction
                 {
                     active = true;
+                    animator.SetBool("isActive", true);
                 }
                 else
                 {
