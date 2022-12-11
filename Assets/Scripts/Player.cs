@@ -5,24 +5,26 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    //PlayerMask should be assigned here
     [SerializeField] private LayerMask platformLayerMask;
 
+    //Actual script for processing movement input
     public CharacterController2D controller;
+
+    //Animator for player animations
     public Animator animator;
 
-    float horizontalMove = 0f;
+    //Parameters for movement control
     [SerializeField] private float runSpeed = 40f;
+    float horizontalMove = 0f;
     bool jump = false;
     bool crouch = false;
 
-    //When taking damage, movement should be shortly disabled
-    [System.NonSerialized]
-    public bool isDamaged = false;
-
+    //Movement boundaries
     [SerializeField] private int maxLeft = -7;
     [SerializeField] private int maxRight = 10;
 
-    //Shader 
+    //Shader stuff
     Material material;
     float fade = 0f;
     bool isDissolving = true;
@@ -37,35 +39,30 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed; //This way, several buttons work ("A and D", "Leftarrow and Rightarrow", etc.)
 
-        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove)); //Change speed triggers run animation
 
-        //trigger Jump
-        if (Input.GetButtonDown("Jump") && !isDamaged)
+        if (Input.GetButtonDown("Jump"))  //Trigger jump for CharacterController2D
         {
             jump = true;
-            //rb.velocity = Vector2.up * jumpForce;
             animator.SetTrigger("Jump");
         }
 
-        //enable Crouch
-        if (Input.GetButtonDown("Crouch") && !isDamaged)
+        if (Input.GetButtonDown("Crouch"))    //Enable crouch for CharacterController2D
         {
             crouch = true;
-
         } else if(Input.GetButtonUp("Crouch"))
         {
             crouch = false;
         }
 
-        if(Input.GetKeyDown(KeyCode.K))
+        if(Input.GetKeyDown(KeyCode.K)) //Call shoot function in CharacterController2D
         {
             controller.shoot();
         }
 
-        // dissolve shader
-        if(isDissolving)
+        if(isDissolving)    //Activate dissolve shader (inverted) when spawned
         {
             fade += Time.deltaTime/2;
             if(fade >= 1f)
@@ -81,16 +78,15 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (transform.position.x < maxRight && transform.position.x > maxLeft && !isDamaged){
-            controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);  
+        if (transform.position.x < maxRight && transform.position.x > maxLeft){
+            controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);  //Call Move function in CharacterController2D
         }
         jump = false;
-
     }
 
     public void OnCrouching (bool isCrouching)
     {
-        animator.SetBool("IsCrouching", isCrouching);
+        animator.SetBool("IsCrouching", isCrouching); //Trigger crouch animation when crouching (why do I even explain...)
     }
 }
 

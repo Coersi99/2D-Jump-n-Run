@@ -67,7 +67,6 @@ public class HeartSystem : MonoBehaviour
 
         if(secondsCount >= vulnerabilityTime){
             isVulnerable = true;
-            //GetComponent<Player>().isDamaged = false;
         }
 
     }
@@ -89,7 +88,6 @@ public class HeartSystem : MonoBehaviour
     {
         if(life >= 1 && isVulnerable)
         {
-            //GetComponent<Player>().isDamaged = true;
             //life -= damage;      
             //Destroy(hearts[life].gameObject);
             while (life >= 1 && damage > 0)
