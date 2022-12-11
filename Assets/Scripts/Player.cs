@@ -86,53 +86,11 @@ public class Player : MonoBehaviour
         }
         jump = false;
 
-        /*
-        if (Input.GetKey(KeyCode.A) && transform.position.x > maxLeft)
-        {
-            rb.velocity = new Vector2(-speed, rb.velocity.y);
-            transform.localScale = facingLeft;
-            isFacingRight = false;
-            animator.SetFloat("Speed", 1);
-        }
-        else if (Input.GetKey(KeyCode.D) && transform.position.x < maxRight)
-        {
-            rb.velocity = new Vector2(speed, rb.velocity.y);
-            transform.localScale = facingRight;
-            isFacingRight = true;
-            animator.SetFloat("Speed", 1);
-        }
-        else
-        {
-            rb.velocity = new Vector2(0, rb.velocity.y);
-            animator.SetFloat("Speed", 0);
-        }
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            animator.SetBool("isDuck", true);
-        }else{
-            animator.SetBool("isDuck", false);
-        }*/
-
-
     }
 
     public void OnCrouching (bool isCrouching)
     {
         animator.SetBool("IsCrouching", isCrouching);
     }
-
-    /*
-    private bool isGrounded()
-    {
-        float extraHeight = 0.05f;
-        float sideBuffer = 0.01f;
-        float size = cc.bounds.size.x;
-        Vector3 startPos = cc.bounds.center + Vector3.right * size / 2 + Vector3.left * sideBuffer;
-        RaycastHit2D rh1 = Physics2D.Raycast(startPos, Vector2.down, cc.bounds.extents.y + extraHeight, platformLayerMask);
-        startPos = cc.bounds.center + Vector3.left * size / 2 + Vector3.right * sideBuffer;
-        RaycastHit2D rh2 = Physics2D.Raycast(startPos, Vector2.down, cc.bounds.extents.y + extraHeight, platformLayerMask);
-        Debug.DrawRay(cc.bounds.center + Vector3.right * size / 2 + Vector3.left * sideBuffer, Vector2.down * (cc.bounds.extents.y + extraHeight));
-        return rh1.collider != null || rh2.collider != null;
-    }*/
 }
+
