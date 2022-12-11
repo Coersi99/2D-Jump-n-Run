@@ -5,11 +5,12 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     BoxCollider2D bc;
+    public Rigidbody2D rb;
 
     [SerializeField] int id;
     [SerializeField] float speed = 2f;
     [SerializeField] int damage = 100;
-    private Vector3 direction;
+    private float direction;
     private ProjectilePool projectilePool;
     [SerializeField] float timeToLiveLimit = 10f;
     private float timeToLive;
@@ -19,13 +20,13 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         bc = GetComponent<BoxCollider2D>();
-
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(direction * Time.deltaTime * speed);
+        //transform.Translate(direction * Time.deltaTime * speed);
         timeToLive -= Time.deltaTime;
         if (timeToLive < 0)
         {
@@ -41,15 +42,16 @@ public class Projectile : MonoBehaviour
         setId(id);
         if (facingRight)
         {
-            direction = Vector3.right;
+            direction = 1;
             if(transform.localScale.x<0) transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
         else
         {
-            direction = Vector3.left;
+            direction = -1;
             if(transform.localScale.x>=0) transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
         timeToLive = timeToLiveLimit;
+        rb.velocity = new Vector2(direction * speed, 0);
     }
 
     public void setId(int id)

@@ -30,7 +30,6 @@ public class Enemy1 : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
         cc = GetComponent<CircleCollider2D>();
-        cc = GetComponent<CircleCollider2D>();
         weapon = GetComponent<EnemyWeapon>();
         fieldOfView = GetComponent<FieldOfView>();
         playerRef = GameObject.FindGameObjectWithTag("Player");
@@ -143,7 +142,7 @@ public class Enemy1 : MonoBehaviour
         }
         Vector3 startPos = cc.bounds.center + dirBig * size / 2 + dirSmall * sideBuffer;
         RaycastHit2D rh = Physics2D.Raycast(startPos, Vector2.down, cc.bounds.extents.y + extraHeight, platformLayerMask);
-        // Debug.DrawRay(startPos, Vector2.down * (cc.bounds.extents.y + extraHeight));
+        //Debug.DrawRay(startPos, Vector2.down * (cc.bounds.extents.y + extraHeight));
         return rh.collider == null;
     }
 
