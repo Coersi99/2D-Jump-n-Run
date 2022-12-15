@@ -51,7 +51,6 @@ public class HeartSystem : MonoBehaviour
     {
         if (fellToDeath)
         {
-            print("reached if");
             StartCoroutine(waitShortlyThenRestart());
         }
         else if(dead)
@@ -73,9 +72,7 @@ public class HeartSystem : MonoBehaviour
 
     private IEnumerator waitShortlyThenRestart()
     {
-        print("waiting");
         yield return new WaitForSeconds(0.5f);
-        print("restarting");
         Restart();
     }
 
@@ -121,7 +118,6 @@ public class HeartSystem : MonoBehaviour
 
     public void fallToDeath()
     {
-        print("falling to death");
         isVulnerable = true;
         fellToDeath = true;
         TakeDamage(life, 0, 0);
