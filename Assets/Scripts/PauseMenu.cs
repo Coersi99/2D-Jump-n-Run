@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
 
     public GameObject pauseMenuUI;
+
+    [SerializeField] string MainMenu;
 
     // Update is called once per frame
     void Update()
@@ -40,11 +43,12 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu()
     {
-        print("Loading Menu...");
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(MainMenu);
     }
 
     public void QuitGame()
     {
-        print("Quitting Game...");
+        Application.Quit();
     }
 }
