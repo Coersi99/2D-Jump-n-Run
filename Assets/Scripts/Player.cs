@@ -29,15 +29,29 @@ public class Player : MonoBehaviour
     float fade = 0f;
     bool isDissolving = true;
 
+    
+	//Dash params
+	private bool canDash = true;
+	private bool isDashing;
+	private float dashingPower = 5f;
+	private float dashingTime = 0.2f;
+	private float dashingCooldown = 0.7f;
+    [SerializeField] private TrailRenderer tr;
+    private Rigidbody2D rb;
+
     // Start is called before the first frame update
     void Start()
     {
         material = GetComponent<SpriteRenderer>().material;
+        rb  = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(isDashing){
+            return;
+        }
 
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed; //This way, several buttons work ("A and D", "Leftarrow and Rightarrow", etc.)
 
@@ -62,6 +76,11 @@ public class Player : MonoBehaviour
             controller.shoot();
         }
 
+        if(Input.GetKeyDown(KeyCode.LeftShift) && !crouch)
+        {
+            StartCoroutine(Dash());
+        }
+
         if(isDissolving)    //Activate dissolve shader (inverted) when spawned
         {
             fade += Time.deltaTime/2;
@@ -77,6 +96,9 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(isDashing){
+            return;
+        }
 
         if (transform.position.x < maxRight && transform.position.x > maxLeft){
             controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);  //Call Move function in CharacterController2D
@@ -88,5 +110,23 @@ public class Player : MonoBehaviour
     {
         animator.SetBool("IsCrouching", isCrouching); //Trigger crouch animation when crouching (why do I even explain...)
     }
+
+    public IEnumerator Dash()
+	{
+		if(canDash){
+			canDash = false;
+			isDashing = true;
+			float originalGravity = rb.gravityScale;
+			rb.gravityScale = 0f;
+			rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+			tr.emitting = true;
+			yield return new WaitForSeconds(dashingTime);
+			tr.emitting = false;
+			rb.gravityScale = originalGravity;
+			isDashing = false;
+			yield return new WaitForSeconds(dashingCooldown);
+			canDash = true;
+		}
+	}
 }
 
