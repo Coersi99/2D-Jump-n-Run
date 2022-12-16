@@ -7,11 +7,20 @@ public class SimpleCameraFollow : MonoBehaviour
     public GameObject playerRef;
     [SerializeField] float speed = 20f;
     private bool following = true;
+    private bool adjusted_after_load = false;
+
 
     public void stopFollowing()
     {
         following = false;
     }
+
+    Vector3 SetZ(Vector3 vector, float z)
+    {
+        vector.z = z;
+        return vector;
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -19,9 +28,19 @@ public class SimpleCameraFollow : MonoBehaviour
         playerRef = GameObject.FindGameObjectWithTag("Player");
     }
 
+
+
+
     // Update is called once per frame
     void Update()
     {
+        if (!adjusted_after_load)
+        {
+            this.transform.position = SetZ(playerRef.transform.position, -10);
+            adjusted_after_load = true;
+        }
+
+
         if (following)
         {
             Vector3 cameraPosition = this.transform.position;
