@@ -28,7 +28,11 @@ public class CharacterController2D : MonoBehaviour
 	[Header("Events")]
 	[Space]
 
-	public UnityEvent OnLandEvent;
+    //Audio stuff
+    [SerializeField] private AudioSource jumpSoundEffect;
+    [SerializeField] private AudioSource shootSoundEffect;
+
+    public UnityEvent OnLandEvent;
 
 	[System.Serializable]
 	public class BoolEvent : UnityEvent<bool> { }
@@ -137,7 +141,8 @@ public class CharacterController2D : MonoBehaviour
 			// Add a vertical force to the player.
 			m_Grounded = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
-		}
+            jumpSoundEffect.Play();
+        }
 	}
 
 	public void shoot(){
@@ -145,6 +150,7 @@ public class CharacterController2D : MonoBehaviour
         {
             projectilePool.SpawnObject(m_FacingRight, bc.bounds.center, bc.bounds.size.x);
             animator.SetTrigger("Shoot");
+            shootSoundEffect.Play();
         }
 	}
 

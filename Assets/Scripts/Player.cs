@@ -29,9 +29,12 @@ public class Player : MonoBehaviour
     float fade = 0f;
     bool isDissolving = true;
 
-    
-	//Dash params
-	private bool canDash = true;
+    //Audio stuff
+    [SerializeField] private AudioSource dashSoundEffect;
+
+
+    //Dash params
+    private bool canDash = true;
 	private bool isDashing;
 	private float dashingPower = 5f;
 	private float dashingTime = 0.2f;
@@ -114,7 +117,8 @@ public class Player : MonoBehaviour
     public IEnumerator Dash()
 	{
 		if(canDash){
-			canDash = false;
+            dashSoundEffect.Play();
+            canDash = false;
 			isDashing = true;
 			float originalGravity = rb.gravityScale;
 			rb.gravityScale = 0f;
@@ -126,7 +130,7 @@ public class Player : MonoBehaviour
 			isDashing = false;
 			yield return new WaitForSeconds(dashingCooldown);
 			canDash = true;
-		}
+        }
 	}
 }
 

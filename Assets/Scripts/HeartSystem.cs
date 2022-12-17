@@ -22,6 +22,10 @@ public class HeartSystem : MonoBehaviour
     private bool isVulnerable = true;
     private float secondsCount = 0f;
 
+    //Audio stuff
+    [SerializeField] private AudioSource damageSoundEffect;
+    [SerializeField] private AudioSource deathSoundEffect;
+
     // public getter for receiving the current Instance of our singleton
     // the setter is private, such that external classes cannot change the reference
     public static HeartSystem Instance { get; private set; }
@@ -96,7 +100,8 @@ public class HeartSystem : MonoBehaviour
 
             if(life < 1)
             {
-             dead = true;
+                deathSoundEffect.Play();
+                dead = true;
             }else{
                 
                 if(direction < 0)
@@ -108,6 +113,7 @@ public class HeartSystem : MonoBehaviour
 
                 animator.SetTrigger("Hit");
                 GetComponent<SimpleFlash>().Flash();
+                damageSoundEffect.Play();
             }
 
             isVulnerable = false;

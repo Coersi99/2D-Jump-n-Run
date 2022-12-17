@@ -8,6 +8,9 @@ public class Checkpoint : MonoBehaviour
     private GameMaster gm;
     public GameObject circle;
 
+    //Audio stuff
+    [SerializeField] private AudioSource activateSoundEffect;
+
     void Start()
     {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
@@ -17,6 +20,10 @@ public class Checkpoint : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            if (circle.activeInHierarchy == false)
+            {
+                activateSoundEffect.Play();
+            }
             gm.lastCheckPointPos = transform.position;
             circle.gameObject.SetActive(true);
         }
