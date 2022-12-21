@@ -69,7 +69,7 @@ public class StupidKnight : MonoBehaviour
         Vector3 startPos = cc.bounds.center + Vector3.up * size / 2 + Vector3.down * sideBuffer;
         RaycastHit2D rhUp = Physics2D.Raycast(startPos, dir, cc.bounds.extents.x + extraDepth, platformLayerMask);
         Debug.DrawRay(startPos, dir * (cc.bounds.extents.y + extraDepth));
-        startPos = cc.bounds.center + Vector3.down * size / 2 + Vector3.up * sideBuffer;
+        startPos = cc.bounds.center + Vector3.down * size / 3 + Vector3.up * sideBuffer;
         RaycastHit2D rhDown = Physics2D.Raycast(startPos, dir, cc.bounds.extents.x + extraDepth, platformLayerMask);
         Debug.DrawRay(startPos, dir * (cc.bounds.extents.y + extraDepth));
         return rhUp.collider != null || rhDown.collider != null;
