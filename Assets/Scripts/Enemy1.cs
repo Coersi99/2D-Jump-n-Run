@@ -21,7 +21,6 @@ public class Enemy1 : MonoBehaviour
     [SerializeField] bool isFacingRight = true;
     [SerializeField] private float speed = 1f;
     [SerializeField] private float attackSpeed = 3f;
-    [SerializeField] float touchKnockback = 50f;
     [SerializeField] int touchDamage = 1;
     public Animator animator;
 
@@ -91,7 +90,7 @@ public class Enemy1 : MonoBehaviour
     private void OnCollisionStay2D(Collision2D other)
     {
         if(other.gameObject.tag == "Player"){
-            other.gameObject.GetComponent<HeartSystem>().TakeDamage(touchDamage, touchKnockback, transform.localScale.x);
+            other.gameObject.GetComponent<HeartSystem>().TakeDamage(touchDamage, transform.localScale.x);
         }
     }
 

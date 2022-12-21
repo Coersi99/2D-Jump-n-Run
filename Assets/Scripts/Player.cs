@@ -32,7 +32,6 @@ public class Player : MonoBehaviour
     //Audio stuff
     [SerializeField] private AudioSource dashSoundEffect;
 
-
     //Dash params
     private bool canDash = true;
 	private bool isDashing;
@@ -41,6 +40,12 @@ public class Player : MonoBehaviour
 	private float dashingCooldown = 0.7f;
     [SerializeField] private TrailRenderer tr;
     private Rigidbody2D rb;
+
+    //Knockback stuff
+    public float knockBackTotalTime;
+    public float knockbackForce = 6f;
+    public float knockbackCounter;
+    public bool knockFromRight;
 
     // Start is called before the first frame update
     void Start()
@@ -74,12 +79,12 @@ public class Player : MonoBehaviour
             crouch = false;
         }
 
-        if(Input.GetKeyDown(KeyCode.K)) //Call shoot function in CharacterController2D
+        if(Input.GetKeyDown(KeyCode.K) && knockbackCounter <= 0) //Call shoot function in CharacterController2D
         {
             controller.shoot();
         }
 
-        if(Input.GetKeyDown(KeyCode.LeftShift) && !crouch)
+        if(Input.GetKeyDown(KeyCode.LeftShift) && !crouch && knockbackCounter <= 0)
         {
             StartCoroutine(Dash());
         }
@@ -103,10 +108,26 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (transform.position.x < maxRight && transform.position.x > maxLeft){
-            controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);  //Call Move function in CharacterController2D
+        if(knockbackCounter <= 0){      //If no knockback applied the player can move freely
+            knockbackForce = 10f;
+            if (transform.position.x < maxRight && transform.position.x > maxLeft)
+            {
+                controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);  //Call Move function in CharacterController2D
+                jump = false;
+            }
+        }else{
+            if(knockFromRight)
+            {
+                rb.velocity = new Vector2(knockbackForce, knockbackForce);
+                knockbackForce -= 0.7f;
+            }else{
+                rb.velocity = new Vector2(-knockbackForce, knockbackForce);
+                knockbackForce -= 0.7f;
+            }
+
+            knockbackCounter -= Time.deltaTime;
         }
-        jump = false;
+        
     }
 
     public void OnCrouching (bool isCrouching)
@@ -116,7 +137,8 @@ public class Player : MonoBehaviour
 
     public IEnumerator Dash()
 	{
-		if(canDash){
+		if(canDash)
+        {
             dashSoundEffect.Play();
             canDash = false;
 			isDashing = true;

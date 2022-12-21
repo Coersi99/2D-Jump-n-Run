@@ -13,13 +13,14 @@ public class HeartSystem : MonoBehaviour
     public Animator animator;
     public Material invincibilityShader;
     Material material;
+    Player player;
 
     public float vulnerabilityTime = 1f;
     public GameObject[] hearts;
     private int life;
     private bool dead;
     private bool fellToDeath;
-    private bool isVulnerable = true;
+    public bool isVulnerable = true;
     private float secondsCount = 0f;
 
     //Audio stuff
@@ -49,6 +50,7 @@ public class HeartSystem : MonoBehaviour
         life = hearts.Length;
         rb = GetComponent<Rigidbody2D>();
         material = GetComponent<SpriteRenderer>().material;
+        player = GetComponent<Player>();
     }
 
     void Update()
@@ -85,12 +87,10 @@ public class HeartSystem : MonoBehaviour
     }
 
     // Triggered once the player takes damage
-    public void TakeDamage(int damage, float enemyKnockback, float direction)
+    public void TakeDamage(int damage, float direction)
     {
         if(life >= 1 && isVulnerable)
         {
-            //life -= damage;      
-            //Destroy(hearts[life].gameObject);
             while (life >= 1 && damage > 0)
             {
                 life--;
@@ -103,16 +103,18 @@ public class HeartSystem : MonoBehaviour
                 deathSoundEffect.Play();
                 dead = true;
             }else{
-                
-                if(direction < 0)
-                {   
-                    rb.velocity = new Vector2(-enemyKnockback, 15);
-                }else{
-                    rb.velocity = new Vector2(enemyKnockback, 15);
-                }
 
+                player.knockbackCounter = player.knockBackTotalTime;    //Set counter to activate knockback and disallow movement
+
+                if(direction >= 0)      //Set knockback direction given the direction of the danger source
+                {
+                    player.knockFromRight = true;
+                }else{
+                    player.knockFromRight = false;
+                }
+                
                 animator.SetTrigger("Hit");
-                GetComponent<SimpleFlash>().Flash();
+                GetComponent<SimpleFlash>().Flash();    //Activate Flash effect (i.e. invulnerability blinking)
                 damageSoundEffect.Play();
             }
 
@@ -126,6 +128,6 @@ public class HeartSystem : MonoBehaviour
     {
         isVulnerable = true;
         fellToDeath = true;
-        TakeDamage(life, 0, 0);
+        TakeDamage(life, 0);
     }
 }

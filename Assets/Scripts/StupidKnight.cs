@@ -17,7 +17,6 @@ public class StupidKnight : MonoBehaviour
 
     [SerializeField] bool isFacingRight = true;
     [SerializeField] private float speed = 1f;
-    [SerializeField] float touchKnockback = 50f;
     [SerializeField] int touchDamage = 1;
 
     // Start is called before the first frame update
@@ -39,7 +38,8 @@ public class StupidKnight : MonoBehaviour
     private void OnCollisionStay2D(Collision2D other)
     {
         if(other.gameObject.tag == "Player"){
-            other.gameObject.GetComponent<HeartSystem>().TakeDamage(touchDamage, touchKnockback, transform.localScale.x);
+            Vector2 directionToTarget = (other.gameObject.transform.position - transform.position).normalized;  //Determine direction for knockback
+            other.gameObject.GetComponent<HeartSystem>().TakeDamage(touchDamage, directionToTarget.x);
         }
     }
 

@@ -14,7 +14,6 @@ public class Mine : MonoBehaviour
     [SerializeField] float speed = 3.0f;
     [SerializeField] float searchRadius = 3.0f;
     [SerializeField] float explodingRadius = 3.0f;
-    [SerializeField] float explodingKnockback = 50f;
     [SerializeField] ParticleSystem explosion;
 
     public int attackDamage = 1;
@@ -86,7 +85,7 @@ public class Mine : MonoBehaviour
             float distanceToTarget = Vector2.Distance(transform.position, target.position);
             if (!Physics2D.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionLayer))   // true if ray does not hit obstruction
             {
-                playerRef.GetComponent<HeartSystem>().TakeDamage(attackDamage, explodingKnockback, directionToTarget.x);
+                playerRef.GetComponent<HeartSystem>().TakeDamage(attackDamage, directionToTarget.x);
             }
         }
 

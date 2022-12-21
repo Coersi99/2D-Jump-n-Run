@@ -30,7 +30,7 @@ public class EnemyWeapon : MonoBehaviour
         Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
         if(colInfo != null)
         {
-            colInfo.GetComponent<HeartSystem>().TakeDamage(attackDamage, knockback, transform.localScale.x);
+            colInfo.GetComponent<HeartSystem>().TakeDamage(attackDamage, transform.localScale.x);
         }
 
     }
