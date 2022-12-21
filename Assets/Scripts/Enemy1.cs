@@ -23,6 +23,7 @@ public class Enemy1 : MonoBehaviour
     [SerializeField] private float attackSpeed = 3f;
     [SerializeField] float touchKnockback = 50f;
     [SerializeField] int touchDamage = 1;
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +47,9 @@ public class Enemy1 : MonoBehaviour
         else if (fieldOfView.GetCurrentState() == enemyState.aggressiveState)
         {
             GoToPlayer();
+            if(bumpedIntoWall(isFacingRight)){
+                animator.SetBool("isAttack", false);
+            }
         }
 
     }

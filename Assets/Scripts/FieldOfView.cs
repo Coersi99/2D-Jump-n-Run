@@ -47,7 +47,6 @@ public class FieldOfView : MonoBehaviour
         {
             currentState = enemyState.attackingState;
             StartCoroutine(Attack());
-            animator.SetBool("isAttack", true);
         }
     }
 
@@ -69,6 +68,7 @@ public class FieldOfView : MonoBehaviour
                 if (!Physics2D.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionLayer))   // true if ray does not hit obstruction
                 {
                     currentState = enemyState.prepareAttackState;
+                    animator.SetBool("isAttack", true);
                 }
                 else
                 {
