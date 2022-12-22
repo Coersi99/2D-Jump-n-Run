@@ -11,6 +11,11 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField] string MainMenu;
 
+    private void Start()
+    {
+        GameIsPaused = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
