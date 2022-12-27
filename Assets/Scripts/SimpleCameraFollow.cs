@@ -7,8 +7,10 @@ public class SimpleCameraFollow : MonoBehaviour
     public GameObject playerRef;
     [SerializeField] float speed = 20f;
     [SerializeField] float offset_y = 2.5f;
+    public Vector2 cameraSwitchPosition;
     private bool following = true;
     private bool adjusted_after_load = false;
+    private bool enableOffset = true;
 
 
     public void stopFollowing()
@@ -41,12 +43,18 @@ public class SimpleCameraFollow : MonoBehaviour
             adjusted_after_load = true;
         }
 
+        //disable Offset when certain location reached
+        if(playerRef.transform.position.x - cameraSwitchPosition.x >= 0) enableOffset = false;
+        else enableOffset = true;
 
         if (following)
         {
             Vector3 cameraPosition = this.transform.position;
             Vector3 playerPos = playerRef.transform.position;
-            playerPos.y += offset_y;
+            if(enableOffset)
+            {
+                playerPos.y += offset_y;
+            }
             playerPos.z = cameraPosition.z;
             Vector3 directionToTarget = (playerPos - cameraPosition).normalized;
             float currentDistance = Vector3.Distance(playerPos, cameraPosition);

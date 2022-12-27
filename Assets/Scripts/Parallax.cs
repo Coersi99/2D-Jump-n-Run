@@ -8,6 +8,7 @@ public class Parallax : MonoBehaviour
     private Vector3 startPos;
     public GameObject cam;
     public float parallaxEffect;
+    public bool enableVerticalMovement;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,12 @@ public class Parallax : MonoBehaviour
         float temp = (cam.transform.position.x * (1-parallaxEffect));
         float dist = (cam.transform.position.x * parallaxEffect);
 
-        transform.position = new Vector3(startPos.x + dist, startPos.y, transform.position.z);
+        if(enableVerticalMovement){
+            transform.position = new Vector3(startPos.x + dist, cam.transform.position.y, transform.position.z);
+        }else
+        {
+            transform.position = new Vector3(startPos.x + dist, startPos.y, transform.position.z);
+        }  
 
         if(temp > startPos.x + length) startPos.x += length;
         else if (temp < startPos.x - length) startPos.x -= length;
