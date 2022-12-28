@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static FieldOfView;
 
-public class Enemy1 : MonoBehaviour
+public class BarrelKnight : MonoBehaviour
 {
     [SerializeField] private LayerMask platformLayerMask;
 
@@ -82,7 +82,6 @@ public class Enemy1 : MonoBehaviour
                 direction = 1;
             }
             rb.velocity = new Vector2(direction * attackSpeed, rb.velocity.y);
-            //animator.SetBool("isAttack", true);
         }
     }
 

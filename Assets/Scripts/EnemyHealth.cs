@@ -22,7 +22,7 @@ public class EnemyHealth : MonoBehaviour
         {
             animator.SetBool("isDead", true);
             GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-            GetComponent<Enemy1>().enabled = false;
+            GetComponent<BarrelKnight>().enabled = false;
             GetComponent<FieldOfView>().enabled = false;
             GetComponent<EnemyWeapon>().enabled = false;
             GetComponent<CircleCollider2D>().enabled = false;

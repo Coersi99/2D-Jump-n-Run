@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 59180b5fd9e99384aa9cdf949a59e438
+guid: 956b83d0b63a3104ab69c1240e245e3a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -115,7 +115,70 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: attack3_0
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 14
+        width: 179
+        height: 55
+      alignment: 9
+      pivot: {x: 0.44134077, y: 0.15454546}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c322c9d557044547886584c71c35929
+      internalID: -950846667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: attack3_1
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 0
+        width: 202
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d86d7cfa268fb04eaab228afd1ca1bc
+      internalID: 2093867318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: attack3_2
+      rect:
+        serializedVersion: 2
+        x: 859
+        y: 0
+        width: 170
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08ab6fa184fb46345b4be6b768ccd170
+      internalID: 338729215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -126,7 +189,10 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      attack3_2: 338729215
+      attack3_1: 2093867318
+      attack3_0: -950846667
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

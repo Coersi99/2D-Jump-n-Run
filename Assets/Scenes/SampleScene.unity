@@ -2810,6 +2810,8 @@ GameObject:
   - component: {fileID: 468179622}
   - component: {fileID: 468179620}
   - component: {fileID: 468179623}
+  - component: {fileID: 468179624}
+  - component: {fileID: 468179625}
   m_Layer: 15
   m_Name: BarrelBomber
   m_TagString: Untagged
@@ -2951,6 +2953,44 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &468179624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468179618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4487f359b7166b41a53d9717087b313, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platformLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  attackRange: 1
+  isFacingRight: 0
+  speed: 1
+  touchDamage: 1
+--- !u!114 &468179625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468179618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcd75af5ebaba2f4883645909b84298d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDamage: 1
+  attackOffset: {x: 2.76, y: 0.11, z: 0}
+  attackRange: 0.88
+  attackMask:
+    serializedVersion: 2
+    m_Bits: 0
+  knockback: 50
 --- !u!4 &488284740 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2034129393836969031, guid: a2187e597393940b3b5d671019e7bba9, type: 3}
@@ -66082,6 +66122,18 @@ PrefabInstance:
       propertyPath: playerRef
       value: 
       objectReference: {fileID: 1731885791}
+    - target: {fileID: 3027687985334264152, guid: fc5df67780b5955498170df306c21d6b, type: 3}
+      propertyPath: attackRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3027687985334264153, guid: fc5df67780b5955498170df306c21d6b, type: 3}
+      propertyPath: attackRange
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3027687985334264153, guid: fc5df67780b5955498170df306c21d6b, type: 3}
+      propertyPath: attackOffset.x
+      value: -1.13
+      objectReference: {fileID: 0}
     - target: {fileID: 3027687985334264162, guid: fc5df67780b5955498170df306c21d6b, type: 3}
       propertyPath: m_SortingOrder
       value: 5

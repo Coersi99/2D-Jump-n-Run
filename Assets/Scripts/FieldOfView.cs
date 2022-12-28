@@ -62,7 +62,7 @@ public class FieldOfView : MonoBehaviour
         {
             Transform target = rangeCheck[0].transform;
             Vector2 directionToTarget = (target.position - transform.position).normalized;
-            if (Vector2.Angle(GetComponent<Enemy1>().getDirection(), directionToTarget) < angle / 2)
+            if (Vector2.Angle(GetComponent<BarrelKnight>().getDirection(), directionToTarget) < angle / 2)
             {
                 float distanceToTarget = Vector2.Distance(transform.position, target.position);
                 if (!Physics2D.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionLayer))   // true if ray does not hit obstruction
@@ -122,7 +122,7 @@ public class FieldOfView : MonoBehaviour
             {
                 Transform target = rangeCheck[0].transform;
                 Vector2 directionToTarget = (target.position - transform.position).normalized;
-                if (Vector2.Angle(GetComponent<Enemy1>().getDirection(), directionToTarget) < angle / 2)
+                if (Vector2.Angle(GetComponent<BarrelKnight>().getDirection(), directionToTarget) < angle / 2)
                 {
                     float distanceToTarget = Vector2.Distance(transform.position, target.position);
                     if (!Physics2D.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionLayer))   // true if ray does not hit obstruction

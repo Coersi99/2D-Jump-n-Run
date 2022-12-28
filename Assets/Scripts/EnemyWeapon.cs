@@ -44,7 +44,7 @@ public class EnemyWeapon : MonoBehaviour
         pos += transform.right * -attackOffset.x;
         pos += transform.up * attackOffset.y;
 
-        Gizmos.DrawLine(transform.position, pos);
+        Gizmos.DrawWireSphere(pos, attackRange);
     }
 
 }
