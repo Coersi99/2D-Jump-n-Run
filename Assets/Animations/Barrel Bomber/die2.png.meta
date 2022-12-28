@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7d407f544e7a03345abd255c8d4877d4
+guid: 9e98a6200aae7474192e3703599cf86a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -115,7 +115,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: die2_0
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 0
+        width: 96
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5, y: 0.37704915}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25df8cfb7cfde8243b5d502274e9b68b
+      internalID: -1607830859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: die2_1
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 0
+        width: 58
+        height: 64
+      alignment: 9
+      pivot: {x: 0.51724136, y: 0.359375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 949c58e920a35d141a6f957e45a9880c
+      internalID: 997470134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: die2_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 15
+        width: 36
+        height: 34
+      alignment: 9
+      pivot: {x: 0.44444445, y: 0.23529412}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68a606b8c570acb49a4336212db18b28
+      internalID: 1504881077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: die2_3
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 15
+        width: 42
+        height: 15
+      alignment: 9
+      pivot: {x: 0.47619048, y: 0.53333336}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bd5d11783ab95741bb7393e1c2b2ed1
+      internalID: -2042572119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -126,7 +210,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      die2_3: -2042572119
+      die2_1: 997470134
+      die2_0: -1607830859
+      die2_2: 1504881077
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

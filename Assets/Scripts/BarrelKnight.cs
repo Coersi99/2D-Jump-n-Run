@@ -159,4 +159,5 @@ public class BarrelKnight : MonoBehaviour
             return Vector3.left;
         }
     }
+
 }

@@ -28,9 +28,10 @@ public class EnemyWeapon : MonoBehaviour
         pos += transform.up * attackOffset.y;
 
         Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
-        if(colInfo != null)
+        if(colInfo != null && colInfo.gameObject.tag == "Player")
         {
-            colInfo.GetComponent<HeartSystem>().TakeDamage(attackDamage, transform.localScale.x);
+            Vector2 directionToTarget = (colInfo.gameObject.transform.position - transform.position).normalized;
+            colInfo.GetComponent<HeartSystem>().TakeDamage(attackDamage, directionToTarget.x);
         }
 
     }
