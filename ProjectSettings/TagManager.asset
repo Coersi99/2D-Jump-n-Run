@@ -8,6 +8,7 @@ TagManager:
   - GM
   - StupidKnight
   - CoinManager
+  - BarrelBomber
   layers:
   - Default
   - TransparentFX
