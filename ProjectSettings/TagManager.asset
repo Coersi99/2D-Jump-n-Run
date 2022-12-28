@@ -7,6 +7,7 @@ TagManager:
   - BarrelKnight
   - GM
   - StupidKnight
+  - CoinManager
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Abyss
   - Platforms
   - Player
-  - 
+  - Coin
   - 
   - Projectile
   - Enemy
