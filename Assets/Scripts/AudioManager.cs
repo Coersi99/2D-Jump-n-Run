@@ -14,6 +14,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource bgm1;
     [SerializeField] private AudioSource explosionEffect;
     [SerializeField] private AudioSource deathMelody;
+    [SerializeField] private AudioSource enemyHitEffect;
+    [SerializeField] private AudioSource ghostScreamEffect;
+    [SerializeField] private AudioSource gawdEffect;
 
     private void Awake()
     {
@@ -39,5 +42,20 @@ public class AudioManager : MonoBehaviour
     {
         bgm1.Stop();
         deathMelody.Play();
+    }
+
+    public void playEnemyHitEffect()
+    {
+        enemyHitEffect.Play();
+    }
+
+    public void playGhostScreamEffect()
+    {
+        ghostScreamEffect.Play();
+    }
+
+    public void playGawdEffect()
+    {
+        gawdEffect.Play();
     }
 }

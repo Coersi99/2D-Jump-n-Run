@@ -24,6 +24,7 @@ public class BarrelBomberHealth : MonoBehaviour
             GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             GetComponent<BarrelBomber>().enabled = false;
             GetComponent<BoxCollider2D>().enabled = false;
+            AudioManager.Instance.playGhostScreamEffect();
         } 
     }
 

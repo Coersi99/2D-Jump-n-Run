@@ -20,6 +20,7 @@ public class StupidKnightHealth : MonoBehaviour
         }
         else
         {
+            AudioManager.Instance.playGawdEffect();
             animator.SetBool("isDead", true);
             GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             GetComponent<StupidKnight>().enabled = false;

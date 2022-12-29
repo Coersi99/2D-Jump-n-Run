@@ -71,10 +71,13 @@ public class Projectile : MonoBehaviour
             if(collision.gameObject.CompareTag("BarrelKnight"))
             {
                 collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+                AudioManager.Instance.playEnemyHitEffect();
             }else if(collision.gameObject.CompareTag("StupidKnight")){
                 collision.gameObject.GetComponent<StupidKnightHealth>().TakeDamage(damage);
+                AudioManager.Instance.playEnemyHitEffect();
             }else if(collision.gameObject.CompareTag("BarrelBomber")){
                 collision.gameObject.GetComponent<BarrelBomberHealth>().TakeDamage(damage);
+                AudioManager.Instance.playEnemyHitEffect();
             }
             if (!collision.gameObject.CompareTag("Player"))
             {
