@@ -73,6 +73,7 @@ public class Mine : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        AudioManager.Instance.playExplosionEffect();
         Explode();
         active = false;
     }
@@ -91,7 +92,6 @@ public class Mine : MonoBehaviour
                 playerRef.GetComponent<HeartSystem>().TakeDamage(attackDamage, directionToTarget.x);
             }
         }
-
         Destroy(this.gameObject);
     }
 }

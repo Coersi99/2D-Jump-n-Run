@@ -111,6 +111,7 @@ MonoBehaviour:
   explodingRadius: 3
   explosion: {fileID: 7625874909929269866, guid: 3ac532f6a983849debcfe9138e676f72, type: 3}
   isStationary: 1
+  explosionEffect: {fileID: 0}
   attackDamage: 1
 --- !u!58 &626397234030700006
 CircleCollider2D:
