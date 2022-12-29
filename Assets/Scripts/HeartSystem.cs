@@ -58,6 +58,7 @@ public class HeartSystem : MonoBehaviour
         if (fellToDeath)
         {
             StartCoroutine(waitShortlyThenRestart());
+            fellToDeath = false;
         }
         else if(dead)
         {
