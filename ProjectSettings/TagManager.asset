@@ -9,6 +9,7 @@ TagManager:
   - StupidKnight
   - CoinManager
   - BarrelBomber
+  - GUI
   layers:
   - Default
   - TransparentFX

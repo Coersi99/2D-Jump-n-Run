@@ -66,6 +66,7 @@ public class HeartSystem : MonoBehaviour
             GetComponent<CharacterController2D>().enabled = false;
             GetComponent<Player>().enabled = false;
             StartCoroutine(waitShortlyThenRestart());
+            dead = false;
         }
 
         secondsCount += Time.deltaTime;
@@ -79,11 +80,7 @@ public class HeartSystem : MonoBehaviour
     private IEnumerator waitShortlyThenRestart()
     {
         yield return new WaitForSeconds(0.5f);
-        Restart();
-    }
-
-    private void Restart(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        DeathScreen.Instance.enableDeathScreen();
     }
 
     // Triggered once the player takes damage
