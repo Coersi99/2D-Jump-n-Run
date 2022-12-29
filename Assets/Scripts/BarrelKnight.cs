@@ -114,15 +114,22 @@ public class BarrelKnight : MonoBehaviour
     {
         float extraDepth = 0.05f;
         float sideBuffer = 0.01f;
-        float size = cc.bounds.size.y;
+        float circleSize = cc.bounds.size.y;
+        float boxSize = bc.bounds.size.y;
         Vector3 dir = getDirection();
-        Vector3 startPos = cc.bounds.center + Vector3.up * size / 2 + Vector3.down * sideBuffer;
-        RaycastHit2D rhUp = Physics2D.Raycast(startPos, dir, cc.bounds.extents.x + extraDepth, platformLayerMask);
-        //Debug.DrawRay(startPos, dir * (cc.bounds.extents.y + extraDepth));
-        startPos = cc.bounds.center + Vector3.down * size / 3 + Vector3.up * sideBuffer;
-        RaycastHit2D rhDown = Physics2D.Raycast(startPos, dir, cc.bounds.extents.x + extraDepth, platformLayerMask);
-        Debug.DrawRay(startPos, dir * (cc.bounds.extents.y + extraDepth));
-        return rhUp.collider != null || rhDown.collider != null;
+        Vector3 circleStartPos = cc.bounds.center + Vector3.up * circleSize / 2 + Vector3.down * sideBuffer;
+        Vector3 boxStartPos = bc.bounds.center + Vector3.up * boxSize / 2 + Vector3.down * sideBuffer;
+        RaycastHit2D rhCircleUp = Physics2D.Raycast(circleStartPos, dir, cc.bounds.extents.x + extraDepth, platformLayerMask);
+        RaycastHit2D rhBoxUp = Physics2D.Raycast(boxStartPos, dir, bc.bounds.extents.x + extraDepth, platformLayerMask);
+        Debug.DrawRay(circleStartPos, dir * (cc.bounds.extents.y + extraDepth));
+        Debug.DrawRay(boxStartPos, dir * (bc.bounds.extents.y + extraDepth));
+        circleStartPos = cc.bounds.center + Vector3.down * circleSize / 3 + Vector3.up * sideBuffer;
+        boxStartPos = bc.bounds.center + Vector3.down * boxSize / 3 + Vector3.up * sideBuffer;
+        RaycastHit2D rhCircleDown = Physics2D.Raycast(circleStartPos, dir, cc.bounds.extents.x + extraDepth, platformLayerMask);
+        RaycastHit2D rhBoxDown = Physics2D.Raycast(boxStartPos, dir, bc.bounds.extents.x + extraDepth, platformLayerMask);
+        Debug.DrawRay(circleStartPos, dir * (cc.bounds.extents.y + extraDepth));
+        Debug.DrawRay(boxStartPos, dir * (bc.bounds.extents.y + extraDepth));
+        return rhCircleUp.collider != null || rhCircleDown.collider != null || rhBoxUp.collider != null || rhBoxUp.collider != null;
     }
 
     private bool reachedEdge(bool facingRight)
