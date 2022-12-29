@@ -27,7 +27,7 @@ public class EnemyWeapon : MonoBehaviour
         //check collision with player
         pos += transform.up * attackOffset.y;
 
-        Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask, 0,1);
+        Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
         if(colInfo != null && colInfo.gameObject.tag == "Player") 
         {
             Vector2 directionToTarget = (colInfo.gameObject.transform.position - transform.position).normalized;

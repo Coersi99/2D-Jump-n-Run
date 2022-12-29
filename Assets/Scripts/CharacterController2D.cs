@@ -22,7 +22,7 @@ public class CharacterController2D : MonoBehaviour
 
 
     //Stuff from that was previously in Player.cs
-    BoxCollider2D bc;
+	CapsuleCollider2D capsuleCol;
     [SerializeField] ProjectilePool projectilePool;
     public Animator animator;
 
@@ -44,7 +44,7 @@ public class CharacterController2D : MonoBehaviour
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
-        bc = GetComponent<BoxCollider2D>();
+        capsuleCol = GetComponent<CapsuleCollider2D>();
 
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
@@ -149,7 +149,7 @@ public class CharacterController2D : MonoBehaviour
 	public void shoot(){
 		if (!m_wasCrouching)
         {
-            projectilePool.SpawnObject(m_FacingRight, bc.bounds.center, bc.bounds.size.x);
+            projectilePool.SpawnObject(m_FacingRight, capsuleCol.bounds.center, capsuleCol.bounds.size.x);
             animator.SetTrigger("Shoot");
             shootSoundEffect.Play();
         }

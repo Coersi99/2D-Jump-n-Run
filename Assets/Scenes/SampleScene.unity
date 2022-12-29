@@ -11284,64 +11284,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e74828901068481383a36d28240d2ef, type: 3}
---- !u!1 &1147818944
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1147818945}
-  - component: {fileID: 1147818946}
-  m_Layer: 11
-  m_Name: HeadCollider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1147818945
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1147818944}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 3}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1731885794}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1147818946
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1147818944}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 407e02b345f3c4c10b683facd3200691, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.033628035, y: 0.055969037}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.101527624, y: 0.1082702}
-  m_EdgeRadius: 0
 --- !u!1 &1155668463
 GameObject:
   m_ObjectHideFlags: 0
@@ -14051,6 +13993,7 @@ GameObject:
   - component: {fileID: 1731885798}
   - component: {fileID: 1731885797}
   - component: {fileID: 1731885801}
+  - component: {fileID: 1731885813}
   - component: {fileID: 1731885799}
   - component: {fileID: 1731885800}
   - component: {fileID: 1731885802}
@@ -14137,7 +14080,6 @@ Transform:
   m_Children:
   - {fileID: 192043760}
   - {fileID: 1961649271}
-  - {fileID: 1147818945}
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14154,7 +14096,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02027297, y: 0.033757545}
+  m_Offset: {x: -0.033105142, y: 0.055939227}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -14165,7 +14107,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.12717903, y: 0.020534975}
+  m_Size: {x: 0.10151468, y: 0.10829067}
   m_EdgeRadius: 0
 --- !u!50 &1731885798
 Rigidbody2D:
@@ -14271,7 +14213,7 @@ MonoBehaviour:
     m_Bits: 33799
   m_GroundCheck: {fileID: 1961649271}
   m_CeilingCheck: {fileID: 192043760}
-  m_CrouchDisableCollider: {fileID: 1147818946}
+  m_CrouchDisableCollider: {fileID: 0}
   projectilePool: {fileID: 287735000}
   animator: {fileID: 1731885800}
   jumpSoundEffect: {fileID: 1731885807}
@@ -15027,6 +14969,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!70 &1731885813
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731885791}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 407e02b345f3c4c10b683facd3200691, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.03, y: 0.034}
+  m_Size: {x: 0.10281984, y: 0.022071198}
+  m_Direction: 1
 --- !u!1 &1758796544
 GameObject:
   m_ObjectHideFlags: 0
