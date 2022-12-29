@@ -1,19 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class AudioManager : MonoBehaviour
+public class DeathScreen : MonoBehaviour
 {
+
+    public GameObject DeathScreenUI;
+
     // not required in the singleton pattern, but helps us tracking which object survived
     [SerializeField] int id;
 
     // public getter for receiving the current Instance of our singleton
     // the setter is private, such that external classes cannot change the reference
-    public static AudioManager Instance { get; private set; }
-
-    [SerializeField] private AudioSource bgm1;
-    [SerializeField] private AudioSource explosionEffect;
-    [SerializeField] private AudioSource deathMelody;
+    public static DeathScreen Instance { get; private set; }
 
     private void Awake()
     {
@@ -30,14 +30,20 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void playExplosionEffect()
+    public void QuitGame()
     {
-        explosionEffect.Play();
+        Application.Quit();
     }
 
-    public void playDeathMelody()
+    public void enableDeathScreen()
     {
-        bgm1.Stop();
-        deathMelody.Play();
+        DeathScreenUI.SetActive(true);
+        AudioManager.Instance.playDeathMelody();
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        DeathScreenUI.SetActive(false);
     }
 }
