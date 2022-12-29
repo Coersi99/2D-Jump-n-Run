@@ -18,6 +18,7 @@ public class BarrelBomber : MonoBehaviour
     [SerializeField] bool isFacingRight = true;
     [SerializeField] int touchDamage = 1;
     [Range(1, 360)][SerializeField] float angle = 45f;
+    [SerializeField] private AudioSource bombEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -86,5 +87,9 @@ public class BarrelBomber : MonoBehaviour
         Gizmos.color = Color.red;
 
         Gizmos.DrawWireSphere(transform.position, vofRadius);
+    }
+
+    void playBombEffect(){
+        bombEffect.Play();
     }
 }
