@@ -7,7 +7,7 @@ public class CoinManager : MonoBehaviour
 {
     public static CoinManager instance;
     public TextMeshProUGUI text;
-    int score;
+    private int score;
 
     // Start is called before the first frame update
     void Start()
@@ -16,11 +16,20 @@ public class CoinManager : MonoBehaviour
         {
             instance = this;
         }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void AddToScore(int Coinvalue)
     {
         score += Coinvalue;
         text.text = score.ToString();
+    }
+
+    public int getScore()
+    {
+        return score;
     }
 }

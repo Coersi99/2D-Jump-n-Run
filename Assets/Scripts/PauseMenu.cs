@@ -11,17 +11,19 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuSound;
 
     [SerializeField] string MainMenu;
-    [SerializeField] private AudioSource menuSoundEffect;
+
+    private GameObject Goal;
 
     private void Start()
     {
         GameIsPaused = false;
+        Goal = GameObject.FindGameObjectWithTag("Goal");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!Goal.GetComponent<Goal>().isFinished() && Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameIsPaused)
             {
