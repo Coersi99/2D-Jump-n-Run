@@ -16,6 +16,9 @@ public class Mine : MonoBehaviour
     [SerializeField] float explodingRadius = 3.0f;
     [SerializeField] ParticleSystem explosion;
 
+    //Determine whether the mine should move or not
+    [SerializeField] bool isStationary;
+
     public int attackDamage = 1;
 
     private bool active = false;
@@ -31,7 +34,7 @@ public class Mine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (active)
+        if (active && !isStationary)
         {
             PursuePlayer();
         }
@@ -40,7 +43,7 @@ public class Mine : MonoBehaviour
     private IEnumerator SurroundCheck()
     {
         WaitForSeconds wait = new WaitForSeconds(0.2f); // only check every 0.2 seconds (more is not necessary)
-        while (!active)
+        while (!active && !isStationary)
         {
             yield return wait;
             Collider2D[] rangeCheck = Physics2D.OverlapCircleAll(transform.position, searchRadius, targetLayer);
