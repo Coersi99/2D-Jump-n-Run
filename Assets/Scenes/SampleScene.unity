@@ -3518,7 +3518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8514130845886267739, guid: 296247edd419c42cfb007cbdf616761b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6
+      value: 7.09
       objectReference: {fileID: 0}
     - target: {fileID: 8514130845886267739, guid: 296247edd419c42cfb007cbdf616761b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -25384,7 +25384,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1592730143
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25425,7 +25425,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Score: -'
+  m_text: 'SCORE: -
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}

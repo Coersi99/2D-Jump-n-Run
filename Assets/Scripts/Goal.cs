@@ -21,13 +21,12 @@ public class Goal : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {
-        print("triggered");
+    { 
         if (!LevelIsFinished)
         {
             Time.timeScale = 0f;
             LevelIsFinished = true;
-            text.text = "Score: " + CoinManager.GetComponent<CoinManager>().getScore().ToString();
+            text.text = "SCORE: " + CoinManager.GetComponent<CoinManager>().getScore().ToString();
             GoalMenuUI.SetActive(true);
             GameCanvas.SetActive(false);
         }
