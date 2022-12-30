@@ -13,14 +13,4 @@ public class PlayerPos : MonoBehaviour
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         transform.position = gm.lastCheckPointPos;
     }
-
-    // Suicide Option for testing
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
-        }
-    }
 }

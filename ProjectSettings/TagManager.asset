@@ -11,6 +11,7 @@ TagManager:
   - BarrelBomber
   - Goal
   - GUI
+  - Boss
   layers:
   - Default
   - TransparentFX

@@ -99,7 +99,13 @@ public class Player : MonoBehaviour
             }
             material.SetFloat("_Fade", fade);
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            transform.position = new Vector3(144, -39, 0);
+
+        }
+
     }
 
     private void FixedUpdate()
