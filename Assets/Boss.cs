@@ -7,6 +7,7 @@ public class Boss : MonoBehaviour
     public Transform player;
 
     public bool isFlipped = false;
+    [SerializeField] int touchDamage = 1;
 
     public void LookAtPlayer()
     {
@@ -26,4 +27,15 @@ public class Boss : MonoBehaviour
             isFlipped = true;
         }
     }
+
+    //Check for collision with player and then call TakeDamage()
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Vector2 directionToTarget = (other.gameObject.transform.position - transform.position).normalized;  //Determine direction for knockback
+            other.gameObject.GetComponent<HeartSystem>().TakeDamage(touchDamage, directionToTarget.x);
+        }
+    }
+
 }

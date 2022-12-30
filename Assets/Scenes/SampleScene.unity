@@ -25147,7 +25147,7 @@ GameObject:
   - component: {fileID: 1590758601}
   - component: {fileID: 1590758600}
   - component: {fileID: 1590758602}
-  m_Layer: 15
+  m_Layer: 16
   m_Name: Boss
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -25162,7 +25162,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1590758592}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 206.899, y: -53.5568, z: -0.23855126}
+  m_LocalPosition: {x: 206.25, y: -51.16, z: -0.23855126}
   m_LocalScale: {x: 7, y: 7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25318,6 +25318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1731885794}
   isFlipped: 1
+  touchDamage: 1
 --- !u!114 &1590758600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25331,7 +25332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1590758594}
-  health: 1
+  health: 10000
   isVulnerable: 1
 --- !u!114 &1590758601
 MonoBehaviour:
@@ -25346,8 +25347,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 1
-  attackOffset: {x: 0, y: 0, z: 0}
-  attackRange: 1
+  attackOffset: {x: 2.1, y: -0.2, z: 0}
+  attackRange: 1.2
   attackMask:
     serializedVersion: 2
     m_Bits: 2048
