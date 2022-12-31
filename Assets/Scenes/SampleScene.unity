@@ -25286,7 +25286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1590758594}
-  health: 10000
+  health: 100
   isVulnerable: 1
 --- !u!114 &1590758601
 MonoBehaviour:

@@ -20,14 +20,22 @@ public class BossHealth : MonoBehaviour
         }
         else if (health <= 0)
         {
-            Die();
+            AudioManager.Instance.playGawdEffect();
+            animator.SetBool("Death", true);
+            Destroy(gameObject, 1f);
+            //GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            //GetComponent<Boss>().enabled = false;
+            //<FieldOfView>().enabled = false;
+            //<EnemyWeapon>().enabled = false;
+            //<CircleCollider2D>().enabled = false;
+            //<BoxCollider2D>().enabled = false;
         }
     }
 
     void Die()
     {
         animator.SetBool("Death", true);
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
 }
