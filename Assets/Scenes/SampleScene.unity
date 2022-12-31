@@ -25952,11 +25952,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2034129393836969031, guid: a2187e597393940b3b5d671019e7bba9, type: 3}
       propertyPath: m_LocalScale.x
-      value: 101.84062
+      value: 102
       objectReference: {fileID: 0}
     - target: {fileID: 2034129393836969031, guid: a2187e597393940b3b5d671019e7bba9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -59.79
+      value: -59.74
       objectReference: {fileID: 0}
     - target: {fileID: 2034129393836969031, guid: a2187e597393940b3b5d671019e7bba9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -27709,6 +27709,7 @@ MonoBehaviour:
   - {fileID: 1052977316}
   - {fileID: 81367645}
   - {fileID: 775648515}
+  playerDead: 0
   isVulnerable: 1
   damageSoundEffect: {fileID: 1731885812}
   deathSoundEffect: {fileID: 1731885811}
@@ -90534,7 +90535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1463703523142092808, guid: 2e74828901068481383a36d28240d2ef, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.6715
+      value: -6.93
       objectReference: {fileID: 0}
     - target: {fileID: 1463703523142092808, guid: 2e74828901068481383a36d28240d2ef, type: 3}
       propertyPath: m_LocalPosition.z
