@@ -31,7 +31,7 @@ public class EnemyWeapon : MonoBehaviour
         if(colInfo != null && colInfo.gameObject.tag == "Player") 
         {
             Vector2 directionToTarget = (colInfo.gameObject.transform.position - transform.position).normalized;
-            colInfo.GetComponent<HeartSystem>().TakeDamage(attackDamage, directionToTarget.x);
+            HeartSystem.Instance.TakeDamage(attackDamage, directionToTarget.x);
         }
 
     }

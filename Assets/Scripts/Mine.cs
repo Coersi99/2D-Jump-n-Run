@@ -89,7 +89,7 @@ public class Mine : MonoBehaviour
             float distanceToTarget = Vector2.Distance(transform.position, target.position);
             if (!Physics2D.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionLayer))   // true if ray does not hit obstruction
             {
-                playerRef.GetComponent<HeartSystem>().TakeDamage(attackDamage, directionToTarget.x);
+                HeartSystem.Instance.TakeDamage(attackDamage, directionToTarget.x);
             }
         }
         Destroy(this.gameObject);

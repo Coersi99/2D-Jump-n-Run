@@ -24,7 +24,7 @@ public class BossWeapon : MonoBehaviour
         if (colInfo != null)
         {
             Vector2 directionToTarget = (colInfo.gameObject.transform.position - transform.position).normalized;
-            colInfo.GetComponent<HeartSystem>().TakeDamage(attackDamage, directionToTarget.x);
+            HeartSystem.Instance.TakeDamage(attackDamage, directionToTarget.x);
         }
     }
 
