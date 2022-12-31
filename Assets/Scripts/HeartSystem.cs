@@ -18,7 +18,8 @@ public class HeartSystem : MonoBehaviour
     public float vulnerabilityTime = 1f;
     public GameObject[] hearts;
     private int life;
-    private bool dead;
+    public bool playerDead = false;
+    private bool triggerDeathScreen;
     private bool fellToDeath;
     public bool isVulnerable = true;
     private float secondsCount = 0f;
@@ -60,14 +61,14 @@ public class HeartSystem : MonoBehaviour
             StartCoroutine(waitShortlyThenRestart());
             fellToDeath = false;
         }
-        else if(dead)
+        else if(triggerDeathScreen)
         {
             animator.SetTrigger("Death");
             rb.bodyType = RigidbodyType2D.Static;
             GetComponent<CharacterController2D>().enabled = false;
             GetComponent<Player>().enabled = false;
             StartCoroutine(waitShortlyThenRestart());
-            dead = false;
+            triggerDeathScreen = false;
         }
 
         secondsCount += Time.deltaTime;
@@ -99,7 +100,8 @@ public class HeartSystem : MonoBehaviour
             if(life < 1)
             {
                 deathSoundEffect.Play();
-                dead = true;
+                triggerDeathScreen = true;
+                playerDead = true;
             }else{
 
                 player.knockbackCounter = player.knockBackTotalTime;    //Set counter to activate knockback and disallow movement

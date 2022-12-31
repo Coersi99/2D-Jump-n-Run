@@ -23,7 +23,7 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!Goal.GetComponent<Goal>().isFinished() && Input.GetKeyDown(KeyCode.Escape))
+        if (!Goal.GetComponent<Goal>().isFinished() && Input.GetKeyDown(KeyCode.Escape) && !HeartSystem.Instance.playerDead)
         {
             if (GameIsPaused)
             {
