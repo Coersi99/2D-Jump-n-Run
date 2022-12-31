@@ -9,6 +9,9 @@ public class Boss : MonoBehaviour
     public bool isFlipped = false;
     [SerializeField] int touchDamage = 1;
 
+    public HealthBar healthBar;
+
+
     public void LookAtPlayer()
     {
         Vector3 flipped = transform.localScale;

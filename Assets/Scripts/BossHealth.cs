@@ -8,11 +8,20 @@ public class BossHealth : MonoBehaviour
     public int health = 10000;
     public bool isVulnerable = true;
 
+    public HealthBar healthBar;
+
+    void Start()
+    {
+        healthBar.SetMaxHealth(health);
+    }
+
+
     public void TakeDamage(int damage)
     {
         if (!isVulnerable) return;
 
         health -= damage;
+        healthBar.SetHealth(health);
 
         if (health > 0)
         {
@@ -20,9 +29,9 @@ public class BossHealth : MonoBehaviour
         }
         else if (health <= 0)
         {
-            AudioManager.Instance.playGawdEffect();
-            animator.SetBool("Death", true);
-            Destroy(gameObject, 1f);
+            Die();
+            animator.SetBool("dead", true);
+            //Destroy(gameObject, 1f);
             //GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             //GetComponent<Boss>().enabled = false;
             //<FieldOfView>().enabled = false;
@@ -34,7 +43,15 @@ public class BossHealth : MonoBehaviour
 
     void Die()
     {
-        animator.SetBool("Death", true);
+        animator.SetBool("dead", true);
+        AudioManager.Instance.playGawdEffect();
+        GetComponent<BoxCollider2D>().enabled = false;
+        GetComponent<CircleCollider2D>().enabled = false;
+        this.enabled = false;
+        
+        
+        
+        //animator.SetBool("Death", true);
         //Destroy(gameObject);
     }
 
