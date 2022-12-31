@@ -56,7 +56,11 @@ public class BarrelKnight : MonoBehaviour
     private void GoToPlayer()
     {
         float playerEnemyPosXDiff = playerRef.transform.position.x - this.transform.position.x;
-        if (Mathf.Abs(playerEnemyPosXDiff) >= 0.5f)
+        if (bumpedIntoWall(isFacingRight) && isFacingTowardsPlayer(playerEnemyPosXDiff))
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y); //Don't move when reach wall and looking towards player
+        }
+        else if (Mathf.Abs(playerEnemyPosXDiff) >= 0.5f)
         {
             if (playerEnemyPosXDiff < 0)
             {
@@ -76,13 +80,18 @@ public class BarrelKnight : MonoBehaviour
                 }
                 isFacingRight = true;
             }
-            int direction = -1;
-            if (isFacingRight)
-            {
-                direction = 1;
-            }
-            rb.velocity = new Vector2(direction * attackSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(getDirectionAsInt() * attackSpeed, rb.velocity.y);
         }
+    }
+
+    private int getDirectionAsInt()
+    {
+        return isFacingRight ? 1 : -1;
+    }
+
+    private bool isFacingTowardsPlayer(float posXDiff)
+    {
+        return (isFacingRight && posXDiff > 0) || (!isFacingRight && posXDiff < 0);
     }
 
     //Check for collision with player and then call TakeDamage()
