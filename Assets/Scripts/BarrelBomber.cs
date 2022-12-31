@@ -18,20 +18,45 @@ public class BarrelBomber : MonoBehaviour
     [SerializeField] bool isFacingRight = true;
     [SerializeField] int touchDamage = 1;
     [Range(1, 360)][SerializeField] float angle = 45f;
+
+    //Audio stuff 
+    public Transform listenerTransform;
     [SerializeField] private AudioSource bombEffect;
+    public float minDist=1;
+    public float maxDist=50;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
+        listenerTransform = GameObject.FindGameObjectWithTag("MainCamera").transform;
         playerRef = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
+        attenuateSound();
         ScanForPlayer();
+    }
+
+    private void attenuateSound()
+    {
+        float dist = Vector3.Distance(transform.position, listenerTransform.position);
+ 
+        if(dist < minDist)
+        {
+            bombEffect.volume = 1;
+        }
+        else if(dist > maxDist)
+        {
+            bombEffect.volume = 0;
+        }
+        else
+        {
+            bombEffect.volume = 1 - ((dist - minDist) / (maxDist - minDist));
+        }
     }
 
     private void ScanForPlayer()
