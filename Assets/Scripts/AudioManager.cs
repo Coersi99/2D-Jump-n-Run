@@ -12,11 +12,14 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
 
     [SerializeField] private AudioSource bgm1;
+    [SerializeField] private AudioSource bossMusic;
+    [SerializeField] private AudioSource victoryMusic;
     [SerializeField] private AudioSource explosionEffect;
     [SerializeField] private AudioSource deathMelody;
     [SerializeField] private AudioSource enemyHitEffect;
     [SerializeField] private AudioSource ghostScreamEffect;
     [SerializeField] private AudioSource gawdEffect;
+    [SerializeField] private AudioSource bossDeathEffect;
 
     private void Awake()
     {
@@ -41,7 +44,22 @@ public class AudioManager : MonoBehaviour
     public void playDeathMelody()
     {
         bgm1.Stop();
+        bossMusic.Stop();
+        victoryMusic.Stop();
         deathMelody.Play();
+    }
+
+    public void playBossMusic()
+    {
+        bgm1.Stop();
+        bossMusic.Play();
+    }
+
+    public void playVictoryMusic()
+    {
+        bgm1.Stop();
+        bossMusic.Stop();
+        victoryMusic.Play();
     }
 
     public void playEnemyHitEffect()
@@ -57,5 +75,10 @@ public class AudioManager : MonoBehaviour
     public void playGawdEffect()
     {
         gawdEffect.Play();
+    }
+
+    public void playBossDeathEffect()
+    {
+        bossDeathEffect.Play();
     }
 }
