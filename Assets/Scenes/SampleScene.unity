@@ -1574,7 +1574,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1731885794}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &202300963 stripped
 Transform:
@@ -23680,6 +23680,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4921763573009079474, guid: f04124e976a12d44c9213049666b77a9, type: 3}
   m_PrefabInstance: {fileID: 4921763573814879489}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1346207161
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1346207162}
+  m_Layer: 11
+  m_Name: ChargedShotFirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1346207162
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346207161}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.133, y: 0.039, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1731885794}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1368768539
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27976,6 +28007,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1346207162}
   - {fileID: 192043760}
   - {fileID: 1961649271}
   m_Father: {fileID: 0}
@@ -28048,6 +28080,8 @@ MonoBehaviour:
   runSpeed: 40
   maxLeft: -20000
   maxRight: 20000
+  chargeSpeed: 3
+  chargeLimit: 2
   dashSoundEffect: {fileID: 1731885810}
   tr: {fileID: 1731885806}
   knockBackTotalTime: 0.2
@@ -28112,6 +28146,8 @@ MonoBehaviour:
   m_GroundCheck: {fileID: 1961649271}
   m_CeilingCheck: {fileID: 192043760}
   m_CrouchDisableCollider: {fileID: 1731885797}
+  chargedShotProjectile: {fileID: 3320074400802843993, guid: 0d20d6f1c56e2de49b515cc30cb4cf48, type: 3}
+  firePoint: {fileID: 1346207162}
   projectilePool: {fileID: 287735000}
   animator: {fileID: 1731885800}
   jumpSoundEffect: {fileID: 1731885807}
@@ -90216,7 +90252,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1731885794}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1965000891
 GameObject:

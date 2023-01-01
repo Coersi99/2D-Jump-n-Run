@@ -29,13 +29,19 @@ public class Player : MonoBehaviour
     float fade = 0f;
     bool isDissolving = true;
 
+    //Charged shot stuff
+    [SerializeField] private float chargeSpeed;
+	[SerializeField] private float chargeLimit;
+    private float chargeTime;
+	private bool isCharging;
+
     //Audio stuff
     [SerializeField] private AudioSource dashSoundEffect;
 
     //Dash params
     private bool canDash = true;
 	private bool isDashing;
-	private float dashingPower = 5f;
+	private float dashingPower = 25f;
 	private float dashingTime = 0.2f;
 	private float dashingCooldown = 0.7f;
     [SerializeField] private TrailRenderer tr;
@@ -79,9 +85,27 @@ public class Player : MonoBehaviour
             crouch = false;
         }
 
-        if(Input.GetKeyDown(KeyCode.K) && knockbackCounter <= 0) //Call shoot function in CharacterController2D
+        if(Input.GetKey(KeyCode.K) && knockbackCounter <= 0 && chargeTime < chargeLimit) //Charge shot
+        {
+            isCharging = true;
+            animator.SetBool("isCharge", true);
+            if(isCharging)
+            {
+                chargeTime += Time.deltaTime * chargeSpeed;
+            }
+        }
+
+        if(Input.GetKeyUp(KeyCode.K) && knockbackCounter <= 0 && chargeTime < chargeLimit)  //shoot regular
         {
             controller.shoot();
+            animator.SetBool("isCharge", false);
+            chargeTime = 0;
+        } else if (Input.GetKeyUp(KeyCode.K) && knockbackCounter <= 0 && chargeTime >= chargeLimit)  //shoot charged
+        {
+            controller.releaseCharge();
+            animator.SetBool("isCharge", false);
+            isCharging = false;
+            chargeTime = 0;
         }
 
         if(Input.GetKeyDown(KeyCode.LeftShift) && !crouch && knockbackCounter <= 0)
@@ -141,6 +165,12 @@ public class Player : MonoBehaviour
         animator.SetBool("IsCrouching", isCrouching); //Trigger crouch animation when crouching (why do I even explain...)
     }
 
+    public IEnumerator Charge()
+	{
+		yield return new WaitForSeconds(0.2f);
+        Debug.Log("Hi");
+	}
+
     public IEnumerator Dash()
 	{
 		if(canDash)
@@ -150,7 +180,15 @@ public class Player : MonoBehaviour
 			isDashing = true;
 			float originalGravity = rb.gravityScale;
 			rb.gravityScale = 0f;
-			rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+
+            if(transform.rotation.y >= 0)
+            {
+                rb.velocity = new Vector2(dashingPower, 0f);
+            } else 
+            {
+                rb.velocity = new Vector2(-dashingPower, 0f);
+            }
+			
 			tr.emitting = true;
 			yield return new WaitForSeconds(dashingTime);
 			tr.emitting = false;

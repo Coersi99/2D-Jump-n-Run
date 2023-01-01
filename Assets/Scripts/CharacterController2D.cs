@@ -20,6 +20,9 @@ public class CharacterController2D : MonoBehaviour
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
 
+	//Charged shot stuff
+    [SerializeField] private GameObject chargedShotProjectile;
+    [SerializeField] private Transform firePoint;
 
     //Stuff from that was previously in Player.cs
 	CapsuleCollider2D capsuleCol;
@@ -148,7 +151,8 @@ public class CharacterController2D : MonoBehaviour
         }
 	}
 
-	public void shoot(){
+	public void shoot()
+	{
 		if (!m_wasCrouching)
         {
             projectilePool.SpawnObject(m_FacingRight, capsuleCol.bounds.center, capsuleCol.bounds.size.x);
@@ -157,16 +161,24 @@ public class CharacterController2D : MonoBehaviour
         }
 	}
 
+	public void releaseCharge()
+	{
+		if(!m_wasCrouching)
+		{
+			Instantiate(chargedShotProjectile, firePoint.position, firePoint.rotation);
+            shootSoundEffect.Play();
+		}
+		
+	}
+
 
 	private void Flip()
 	{	
 		// Switch the way the player is labelled as facing.
 		m_FacingRight = !m_FacingRight;
 
-		// Multiply the player's x local scale by -1.
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
+		// Change rotation of character
+		transform.Rotate(0f, 180f, 0f);
 	}
 
 }
