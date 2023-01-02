@@ -10,6 +10,10 @@ public class BossHealth : MonoBehaviour
 
     public float aggroRange = 10f;
 
+    public GameObject door1;
+    public GameObject door2;
+    public GameObject doorGrid;
+
     public HealthBar healthBar;
     Transform player;
     Rigidbody2D rb;
@@ -31,6 +35,9 @@ public class BossHealth : MonoBehaviour
             {
                 AudioManager.Instance.playBossMusic();
                 startedBossMusic = true;
+                door1.gameObject.SetActive(true);
+                door2.gameObject.SetActive(true);
+                doorGrid.gameObject.SetActive(true);
             }
         }
     }
@@ -71,5 +78,8 @@ public class BossHealth : MonoBehaviour
         Destroy(gameObject);
         healthBar.gameObject.SetActive(false);
         AudioManager.Instance.playVictoryMusic();
+        door1.gameObject.SetActive(false);
+        door2.gameObject.SetActive(false);
+        doorGrid.gameObject.SetActive(false);
     }
 }
