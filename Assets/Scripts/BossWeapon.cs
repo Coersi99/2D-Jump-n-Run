@@ -9,7 +9,6 @@ public class BossWeapon : MonoBehaviour
     public Vector3 attackOffset;
     public float attackRange = 1f;
     public LayerMask attackMask;
-    public float knockback = 50f;
 
     public void Attack()
     {

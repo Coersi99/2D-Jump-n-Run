@@ -5,7 +5,9 @@ using UnityEngine;
 public class BossHealth : MonoBehaviour
 {
     public Animator animator;
-    public int health = 10000;
+    public int maxhealth = 10000;
+    public int health;
+    public double secondPhaseBoundary = 0.5;
     public bool isVulnerable = true;
 
     public float aggroRange = 10f;
@@ -21,7 +23,8 @@ public class BossHealth : MonoBehaviour
     
     void Start()
     {
-        healthBar.SetMaxHealth(health);
+        healthBar.SetMaxHealth(maxhealth);
+        health = maxhealth;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
     }
@@ -54,7 +57,12 @@ public class BossHealth : MonoBehaviour
         {
             GetComponent<SimpleFlash>().Flash();
         }
-        else if (health <= 0)
+        
+        if(health <= maxhealth * secondPhaseBoundary)
+        {
+            animator.SetBool("isSecondPhase", true);
+        }
+        if (health <= 0)
         {
             Die();
         }
@@ -63,6 +71,7 @@ public class BossHealth : MonoBehaviour
     void Die()
     {
         animator.SetBool("dead", true);
+
         AudioManager.Instance.playBossDeathEffect();
         
         GetComponent<BoxCollider2D>().enabled = false;
