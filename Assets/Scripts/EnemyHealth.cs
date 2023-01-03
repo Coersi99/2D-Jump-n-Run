@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    [SerializeField] bool smart = false;
     public Animator animator;
     public int health = 500;
     public bool isVulnerable = true;
 
     public void TakeDamage(int damage)
     {
+        if (smart) GetComponent<FieldOfView>().CanSeePlayer = true;
         if(!isVulnerable) return;
 
         health -= damage;

@@ -24,7 +24,7 @@ public class FieldOfView : MonoBehaviour
     }
     public enemyState currentState { get; private set; } = enemyState.idleState;
 
-    public bool CanSeePlayer { get; private set; }
+    public bool CanSeePlayer { get; set; }
 
     // Start is called before the first frame update
     void Start()
