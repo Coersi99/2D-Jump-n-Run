@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyUp(KeyCode.K) && knockbackCounter <= 0)
+        if(Input.GetKeyUp(KeyCode.K))
         {
             animator.SetBool("isFullyCharged", false);
             isCharging = false;

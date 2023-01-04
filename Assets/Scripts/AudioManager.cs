@@ -21,6 +21,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource gawdEffect;
     [SerializeField] private AudioSource bossSecondPhaseEffect;
     [SerializeField] private AudioSource bossDeathEffect;
+    [SerializeField] private AudioSource enemyDeath1Effect;
+    [SerializeField] private AudioSource enemyDeath2Effect;
 
     private void Awake()
     {
@@ -86,5 +88,15 @@ public class AudioManager : MonoBehaviour
     public void playBossDeathEffect()
     {
         bossDeathEffect.Play();
+    }
+
+    public void playEnemyDeath1Effect()
+    {
+        enemyDeath1Effect.Play();
+    }
+
+    public void playEnemyDeath2Effect()
+    {
+        enemyDeath2Effect.Play();
     }
 }

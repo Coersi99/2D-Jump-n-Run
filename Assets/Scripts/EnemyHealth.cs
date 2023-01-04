@@ -22,7 +22,7 @@ public class EnemyHealth : MonoBehaviour
         }
         else
         {
-            AudioManager.Instance.playGawdEffect();
+            playRandomDeathSound();
             animator.SetBool("isDead", true);
             GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             GetComponent<BarrelKnight>().enabled = false;
@@ -31,6 +31,21 @@ public class EnemyHealth : MonoBehaviour
             GetComponent<CircleCollider2D>().enabled = false;
             GetComponent<BoxCollider2D>().enabled = false;
         } 
+    }
+
+    private void playRandomDeathSound()
+    {
+        int selector = Random.Range(0,3);
+        if(selector == 0)
+        {
+            AudioManager.Instance.playGawdEffect();
+        }else if(selector == 1)
+        {
+            AudioManager.Instance.playEnemyDeath1Effect();
+        }else
+        {
+            AudioManager.Instance.playEnemyDeath2Effect();
+        }
     }
 
     void Die()
