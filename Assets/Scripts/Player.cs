@@ -31,11 +31,12 @@ public class Player : MonoBehaviour
 
     //(Charged) shot stuff
     private bool canShoot = true;
-    [SerializeField] private float shootCooldown;
+    [SerializeField] public float shootCooldown;
     [SerializeField] private float chargeSpeed;
 	[SerializeField] private float chargeLimit;
     private float chargeTime;
 	private bool isCharging;
+    private bool canChargeFlash;
 
     //Audio stuff
     [SerializeField] private AudioSource dashSoundEffect;
@@ -95,10 +96,18 @@ public class Player : MonoBehaviour
             {
                 chargeTime += Time.deltaTime * chargeSpeed;
             }
+
+            if(chargeTime >= chargeLimit/2 && canChargeFlash)
+            {
+                GetComponent<SimpleCharge>().chargeFlash();
+                canChargeFlash = false;
+            }
         }
 
         if(Input.GetKeyUp(KeyCode.K) && knockbackCounter <= 0)
         {
+            isCharging = false;
+            canChargeFlash = true;
             StartCoroutine(shoot());
         }
 
