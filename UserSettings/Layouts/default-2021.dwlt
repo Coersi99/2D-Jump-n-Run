@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 101
+  controlID: 117
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 102
+  controlID: 118
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 103
+  controlID: 119
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -441,11 +441,11 @@ MonoBehaviour:
     - e00: 0.71796787
       e01: 0
       e02: 0
-      e03: -13.463806
+      e03: 191.53622
       e10: 0
       e11: 0.71796787
       e12: 0
-      e13: 88.11749
+      e13: 147.11751
       e20: 0
       e21: 0
       e22: 1
@@ -1365,9 +1365,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 26fbffff0c710000
+      m_SelectedIDs: 4a710000
+      m_LastClickedID: 29002
+      m_ExpandedIDs: 2cfbffffca6d0000e66f0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1446,7 +1446,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 0}
+      snapOffset: {x: 0, y: 24.8}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: unity-scene-view-toolbar
@@ -1638,9 +1638,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 128.03372, y: -31.942032, z: -1.1961145}
+    m_Target: {x: 41.760624, y: -32.466393, z: -1.6249814}
     speed: 2
-    m_Value: {x: 128.03372, y: -31.942032, z: -1.1961145}
+    m_Value: {x: 42.376316, y: -33.03394, z: -1.6027756}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1691,9 +1691,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 45.53803
+    m_Target: 51.56681
     speed: 2
-    m_Value: 45.53803
+    m_Value: 49.34623
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1759,22 +1759,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Animations/Bot Wheel
+    - Assets/Animations/Coin
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Animations/Bot Wheel
+  - Assets/Animations/Coin
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\cbfle\Documents\Uni\Siebtes Semester\GameDev\Game\Spieleentwicklung\Spieleentwicklung
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: a4720000
-    m_LastClickedID: 29348
-    m_ExpandedIDs: 000000002478000026780000287800002a7800002c7800002e78000030780000327800003478000036780000387800003a780000ec98000000ca9a3b
+    scrollPos: {x: 0, y: 15.799988}
+    m_SelectedIDs: e0380100
+    m_LastClickedID: 80096
+    m_ExpandedIDs: 000000002c7800002e78000030780000327800003478000036780000387800003a7800003c7800003e78000040780000427800004a7800004c7800005c7800007438010000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1802,7 +1802,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000002478000026780000287800002a7800002c7800002e78000030780000327800003478000036780000387800003a780000
+    m_ExpandedIDs: 000000002c7800002e78000030780000327800003478000036780000387800003a7800003c7800003e7800004078000042780000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1921,7 +1921,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 1188
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
