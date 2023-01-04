@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
             animator.SetTrigger("Jump");
         }
 
-        if (Input.GetButtonDown("Crouch"))    //Enable crouch for CharacterController2D
+        if (Input.GetButtonDown("Crouch") && !isCharging)    //Enable crouch for CharacterController2D
         {
             crouch = true;
         } else if(Input.GetButtonUp("Crouch"))
@@ -88,7 +88,7 @@ public class Player : MonoBehaviour
             crouch = false;
         }
 
-        if(Input.GetKey(KeyCode.K) && knockbackCounter <= 0 && chargeTime < chargeLimit && canShoot) //Charge shot
+        if(Input.GetKey(KeyCode.K) && knockbackCounter <= 0 && chargeTime < chargeLimit && canShoot && !controller.m_wasCrouching) //Charge shot
         {
             isCharging = true;
             animator.SetBool("isCharge", true);
@@ -102,10 +102,16 @@ public class Player : MonoBehaviour
                 GetComponent<SimpleCharge>().chargeFlash();
                 canChargeFlash = false;
             }
+
+            if(chargeTime >= chargeLimit)
+            {
+                animator.SetBool("isFullyCharged", true);
+            }
         }
 
         if(Input.GetKeyUp(KeyCode.K) && knockbackCounter <= 0)
         {
+            animator.SetBool("isFullyCharged", false);
             isCharging = false;
             canChargeFlash = true;
             StartCoroutine(shoot());
