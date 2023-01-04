@@ -36,10 +36,12 @@ public class Player : MonoBehaviour
 	[SerializeField] private float chargeLimit;
     private float chargeTime;
 	private bool isCharging;
-    private bool canChargeFlash;
+    private bool canChargeFlash = true;
 
     //Audio stuff
     [SerializeField] private AudioSource dashSoundEffect;
+    [SerializeField] private AudioSource chargeEffect;
+    [SerializeField] private AudioSource fullyChargedEffect;
 
     //Dash params
     private bool canDash = true;
@@ -88,7 +90,7 @@ public class Player : MonoBehaviour
             crouch = false;
         }
 
-        if(Input.GetKey(KeyCode.K) && knockbackCounter <= 0 && chargeTime < chargeLimit && canShoot && !controller.m_wasCrouching) //Charge shot
+        if(Input.GetKey(KeyCode.K) && knockbackCounter <= 0 && chargeTime < chargeLimit && canShoot && !controller.m_wasCrouching && !isDissolving) //Charge shot
         {
             isCharging = true;
             animator.SetBool("isCharge", true);
@@ -100,18 +102,22 @@ public class Player : MonoBehaviour
             if(chargeTime >= chargeLimit/2 && canChargeFlash)
             {
                 GetComponent<SimpleCharge>().chargeFlash();
+                chargeEffect.Play();
                 canChargeFlash = false;
             }
 
             if(chargeTime >= chargeLimit)
             {
                 animator.SetBool("isFullyCharged", true);
+                chargeEffect.Stop();
+                fullyChargedEffect.Play();
             }
         }
 
-        if(Input.GetKeyUp(KeyCode.K))
+        if(Input.GetKeyUp(KeyCode.K)  && !isDissolving)
         {
             animator.SetBool("isFullyCharged", false);
+            chargeEffect.Stop();
             isCharging = false;
             canChargeFlash = true;
             StartCoroutine(shoot());

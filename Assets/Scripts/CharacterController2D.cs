@@ -35,6 +35,7 @@ public class CharacterController2D : MonoBehaviour
     //Audio stuff
     [SerializeField] private AudioSource jumpSoundEffect;
     [SerializeField] private AudioSource shootSoundEffect;
+	[SerializeField] private AudioSource chargedShotEffect;
 
     public UnityEvent OnLandEvent;
 
@@ -168,7 +169,7 @@ public class CharacterController2D : MonoBehaviour
 		if(!m_wasCrouching)
 		{
 			Instantiate(chargedShotProjectile, firePoint.position, firePoint.rotation);
-            shootSoundEffect.Play();
+            chargedShotEffect.Play();
 		}
 		
 	}
