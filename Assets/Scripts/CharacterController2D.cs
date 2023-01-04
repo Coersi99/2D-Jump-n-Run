@@ -156,7 +156,7 @@ public class CharacterController2D : MonoBehaviour
 		if (!m_wasCrouching)
         {
             projectilePool.SpawnObject(m_FacingRight, capsuleCol.bounds.center, capsuleCol.bounds.size.x);
-            animator.SetTrigger("Shoot");
+            animator.Play("Player_Shoot");
             shootSoundEffect.Play();
         }
 	}
