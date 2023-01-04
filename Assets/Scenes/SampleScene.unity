@@ -29226,6 +29226,7 @@ MonoBehaviour:
   runSpeed: 40
   maxLeft: -20000
   maxRight: 20000
+  shootCooldown: 0.3
   chargeSpeed: 3
   chargeLimit: 2
   dashSoundEffect: {fileID: 1731885810}

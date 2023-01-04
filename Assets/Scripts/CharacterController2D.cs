@@ -151,7 +151,7 @@ public class CharacterController2D : MonoBehaviour
         }
 	}
 
-	public void shoot()
+	public void shootUncharged()
 	{
 		if (!m_wasCrouching)
         {

@@ -29,7 +29,9 @@ public class Player : MonoBehaviour
     float fade = 0f;
     bool isDissolving = true;
 
-    //Charged shot stuff
+    //(Charged) shot stuff
+    private bool canShoot = true;
+    [SerializeField] private float shootCooldown;
     [SerializeField] private float chargeSpeed;
 	[SerializeField] private float chargeLimit;
     private float chargeTime;
@@ -85,7 +87,7 @@ public class Player : MonoBehaviour
             crouch = false;
         }
 
-        if(Input.GetKey(KeyCode.K) && knockbackCounter <= 0 && chargeTime < chargeLimit) //Charge shot
+        if(Input.GetKey(KeyCode.K) && knockbackCounter <= 0 && chargeTime < chargeLimit && canShoot) //Charge shot
         {
             isCharging = true;
             animator.SetBool("isCharge", true);
@@ -95,22 +97,14 @@ public class Player : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyUp(KeyCode.K) && knockbackCounter <= 0 && chargeTime < chargeLimit)  //shoot regular
+        if(Input.GetKeyUp(KeyCode.K) && knockbackCounter <= 0)
         {
-            controller.shoot();
-            animator.SetBool("isCharge", false);
-            chargeTime = 0;
-        } else if (Input.GetKeyUp(KeyCode.K) && knockbackCounter <= 0 && chargeTime >= chargeLimit)  //shoot charged
-        {
-            controller.releaseCharge();
-            animator.SetBool("isCharge", false);
-            isCharging = false;
-            chargeTime = 0;
+            StartCoroutine(shoot());
         }
 
         if(Input.GetKeyDown(KeyCode.LeftShift) && !crouch && knockbackCounter <= 0)
         {
-            StartCoroutine(Dash());
+            StartCoroutine(dash());
         }
 
         if(isDissolving)    //Activate dissolve shader (inverted) when spawned
@@ -171,7 +165,7 @@ public class Player : MonoBehaviour
         Debug.Log("Hi");
 	}
 
-    public IEnumerator Dash()
+    public IEnumerator dash()
 	{
 		if(canDash)
         {
@@ -198,5 +192,30 @@ public class Player : MonoBehaviour
 			canDash = true;
         }
 	}
+
+    public IEnumerator shoot()
+    {
+        if(canShoot)
+        {
+            if(chargeTime < chargeLimit)
+            {
+                canShoot = false;
+                controller.shootUncharged();
+                animator.SetBool("isCharge", false);
+                chargeTime = 0;
+                yield return new WaitForSeconds(shootCooldown);
+                canShoot = true;
+            }else
+            {
+                canShoot = false;
+                controller.releaseCharge();
+                animator.SetBool("isCharge", false);
+                isCharging = false;
+                chargeTime = 0;
+                yield return new WaitForSeconds(shootCooldown);
+                canShoot = true;
+            }
+        }
+    }
 }
 
