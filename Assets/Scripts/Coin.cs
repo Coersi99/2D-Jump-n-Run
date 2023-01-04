@@ -12,6 +12,7 @@ public class Coin : MonoBehaviour
         if (collectable)
         {
             CoinManager.instance.AddToScore(coinValue);
+            AudioManager.Instance.playCoinEffect();
             collectable = false;
         }
         Destroy(this.gameObject);

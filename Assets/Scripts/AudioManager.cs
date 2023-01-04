@@ -23,6 +23,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource bossDeathEffect;
     [SerializeField] private AudioSource enemyDeath1Effect;
     [SerializeField] private AudioSource enemyDeath2Effect;
+    [SerializeField] private AudioSource coinEffect;
+    
 
     private void Awake()
     {
@@ -98,5 +100,10 @@ public class AudioManager : MonoBehaviour
     public void playEnemyDeath2Effect()
     {
         enemyDeath2Effect.Play();
+    }
+
+    public void playCoinEffect()
+    {
+        coinEffect.Play();
     }
 }
