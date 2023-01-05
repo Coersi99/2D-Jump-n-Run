@@ -26970,6 +26970,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 150708055}
     m_Modifications:
+    - target: {fileID: 3027687985334264154, guid: ebd3772da9456456ea94ff36262279c2, type: 3}
+      propertyPath: heartDropChance
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3027687985334264163, guid: ebd3772da9456456ea94ff36262279c2, type: 3}
       propertyPath: m_RootOrder
       value: 18
