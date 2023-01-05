@@ -182,7 +182,10 @@ MonoBehaviour:
   isFacingRight: 0
   touchDamage: 1
   angle: 65
+  listenerTransform: {fileID: 0}
   bombEffect: {fileID: 1109445392}
+  minDist: 1
+  maxDist: 50
 --- !u!114 &9202558260348915068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,6 +220,8 @@ MonoBehaviour:
   animator: {fileID: 9202558260348915058}
   health: 500
   isVulnerable: 1
+  heartDropChance: 0.1
+  heart: {fileID: 313340160282032921, guid: 976c9c91bb1723e418a72ba1e6e5d1bf, type: 3}
 --- !u!114 &9202558260348915071
 MonoBehaviour:
   m_ObjectHideFlags: 0

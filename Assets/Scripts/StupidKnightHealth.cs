@@ -8,6 +8,10 @@ public class StupidKnightHealth : MonoBehaviour
     public int health = 500;
     public bool isVulnerable = true;
 
+    //Enemy drops
+    [Range(0.0f, 1f)] public float heartDropChance;
+    public GameObject heart; 
+
     public void TakeDamage(int damage)
     {
         if(!isVulnerable) return;
@@ -46,6 +50,7 @@ public class StupidKnightHealth : MonoBehaviour
 
     void Die()
     {
+        if (Random.value < heartDropChance) Instantiate(heart ,new Vector3(transform.position.x, transform.position.y-0.3f, 1), heart.transform.rotation);
         Destroy(gameObject);
     }
 }

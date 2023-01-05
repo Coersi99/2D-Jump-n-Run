@@ -9,6 +9,10 @@ public class EnemyHealth : MonoBehaviour
     public int health = 500;
     public bool isVulnerable = true;
 
+    //Enemy drops
+    [Range(0.0f, 1f)] public float heartDropChance;
+    public GameObject heart; 
+
     public void TakeDamage(int damage)
     {
         if (smart) GetComponent<FieldOfView>().CanSeePlayer = true;
@@ -50,6 +54,7 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
     {
+        if (Random.value < heartDropChance) Instantiate(heart ,new Vector3(transform.position.x, transform.position.y-0.3f, 1), heart.transform.rotation);
         Destroy(gameObject);
     }
 }

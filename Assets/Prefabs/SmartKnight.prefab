@@ -258,6 +258,8 @@ MonoBehaviour:
   animator: {fileID: 3027687985334264159}
   health: 500
   isVulnerable: 1
+  heartDropChance: 0.1
+  heart: {fileID: 313340160282032921, guid: 976c9c91bb1723e418a72ba1e6e5d1bf, type: 3}
 --- !u!114 &3027687985334264155
 MonoBehaviour:
   m_ObjectHideFlags: 0

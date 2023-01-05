@@ -11,6 +11,7 @@ public class Heart : MonoBehaviour
         if (collectable)
         {
             HeartSystem.Instance.heal();
+            AudioManager.Instance.playHeartEffect();
             collectable = false;
         }
         Destroy(this.gameObject);
