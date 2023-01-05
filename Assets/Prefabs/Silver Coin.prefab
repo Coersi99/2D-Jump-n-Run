@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8514130845886267738}
   - component: {fileID: 5392901164075476020}
   m_Layer: 12
-  m_Name: Coin
+  m_Name: Silver Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -2322180950842035098, guid: 274d64617113287499ed1c4165d1d8f3, type: 3}
+  m_Sprite: {fileID: 6582046967323461550, guid: e653e0b36d99f0d4282eed187f500d3f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19dccc5d7fc664c7e85d718db971d326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinValue: 10
+  coinValue: 50
 --- !u!95 &5392901164075476020
 Animator:
   serializedVersion: 4
@@ -126,7 +126,7 @@ Animator:
   m_GameObject: {fileID: 8514130845886267734}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b74db6bf84ec55b439af25ef0e116e70, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8fbcf963a01843a43b4f24adc39b6821, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
