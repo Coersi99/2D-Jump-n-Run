@@ -16,7 +16,8 @@ public class HeartSystem : MonoBehaviour
     Player player;
 
     public float vulnerabilityTime = 1f;
-    public GameObject[] hearts;
+    public List<GameObject> hearts = new List<GameObject>();
+    public GameObject canvas;
     private int life;
     public bool playerDead = false;
     private bool triggerDeathScreen;
@@ -48,7 +49,7 @@ public class HeartSystem : MonoBehaviour
 
     private void Start()
     {
-        life = hearts.Length;
+        life = hearts.Count;
         rb = GetComponent<Rigidbody2D>();
         material = GetComponent<SpriteRenderer>().material;
         player = GetComponent<Player>();
@@ -94,6 +95,7 @@ public class HeartSystem : MonoBehaviour
             {
                 life--;
                 Destroy(hearts[life].gameObject);
+                hearts.RemoveAt(life);
                 damage--;
             }
 
@@ -129,5 +131,15 @@ public class HeartSystem : MonoBehaviour
         isVulnerable = true;
         fellToDeath = true;
         TakeDamage(life, 0);
+    }
+
+    public void heal()
+    {
+        GameObject rightMostHeart = hearts[life-1].gameObject;
+        GameObject heartClone = Instantiate(rightMostHeart ,new Vector3(rightMostHeart.transform.position.x + 1, rightMostHeart.transform.position.y, 1), rightMostHeart.transform.rotation);
+        heartClone.transform.SetParent(canvas.transform);
+        heartClone.transform.localScale = new Vector3(rightMostHeart.transform.localScale.x, rightMostHeart.transform.localScale.y, 1);
+        hearts.Add(heartClone);
+        life++;
     }
 }
