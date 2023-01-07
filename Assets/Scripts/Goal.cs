@@ -13,6 +13,7 @@ public class Goal : MonoBehaviour
     public GameObject GameCanvas;
 
     [SerializeField] GameObject CoinManager;
+    [SerializeField] GameObject RankManager;
     [SerializeField] TextMeshProUGUI text;
 
     private void Start()
@@ -26,7 +27,8 @@ public class Goal : MonoBehaviour
         {
             Time.timeScale = 0f;
             LevelIsFinished = true;
-            text.text = "SCORE: " + CoinManager.GetComponent<CoinManager>().getScore().ToString();
+            text.text = "SCORE: " + CoinManager.GetComponent<CoinManager>().getScore().ToString() + "\n Deaths: " + RankManager.GetComponent<RankManager>().getDeaths().ToString() + "\nRANK: " + RankManager.GetComponent<RankManager>().getRank();
+            
             GoalMenuUI.SetActive(true);
             GameCanvas.SetActive(false);
         }

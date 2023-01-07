@@ -17,4 +17,9 @@ public class Coin : MonoBehaviour
         }
         Destroy(this.gameObject);
     }
+
+    public int getCoinValue()
+    {
+        return this.coinValue;
+    }
 }

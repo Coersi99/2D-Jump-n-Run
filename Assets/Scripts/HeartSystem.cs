@@ -29,6 +29,9 @@ public class HeartSystem : MonoBehaviour
     [SerializeField] private AudioSource damageSoundEffect;
     [SerializeField] private AudioSource deathSoundEffect;
 
+
+    private GameMaster gm;
+
     // public getter for receiving the current Instance of our singleton
     // the setter is private, such that external classes cannot change the reference
     public static HeartSystem Instance { get; private set; }
@@ -53,6 +56,9 @@ public class HeartSystem : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         material = GetComponent<SpriteRenderer>().material;
         player = GetComponent<Player>();
+
+        gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+
     }
 
     void Update()
@@ -82,8 +88,10 @@ public class HeartSystem : MonoBehaviour
 
     private IEnumerator waitShortlyThenRestart()
     {
+        gm.deaths++;
         yield return new WaitForSeconds(0.5f);
         DeathScreen.Instance.enableDeathScreen();
+        
     }
 
     // Triggered once the player takes damage

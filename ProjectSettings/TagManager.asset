@@ -12,6 +12,9 @@ TagManager:
   - Goal
   - GUI
   - Boss
+  - Bronze Coin
+  - Silver Coin
+  - Gold Coin
   layers:
   - Default
   - TransparentFX

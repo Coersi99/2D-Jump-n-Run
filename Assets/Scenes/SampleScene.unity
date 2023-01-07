@@ -6088,6 +6088,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastCheckPointPos: {x: -130, y: 5.5}
+  score: 0
+  deaths: 0
 --- !u!4 &639137495
 Transform:
   m_ObjectHideFlags: 0
@@ -23411,6 +23413,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 896654827}
   m_CullTransparentMesh: 1
+--- !u!1 &903451558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 903451560}
+  - component: {fileID: 903451559}
+  m_Layer: 0
+  m_Name: RankManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &903451559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903451558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5db13546119b8c64692c07846107fc80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bronze_count: 0
+  silver_count: 0
+  gold_count: 0
+  bronze_value: 0
+  silver_value: 0
+  gold_value: 0
+  max_score: 0
+  CoinManager: {fileID: 735241858}
+  score: 0
+  s_boundary: 1
+  a_boundary: 0.8
+  b_boundary: 0.6
+  c_boundary: 0.4
+  d_boundary: 0.2
+  rank: S
+--- !u!4 &903451560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903451558}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -129.06906, y: 7.110632, z: -0.5394379}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &926792539
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29021,7 +29082,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1590758594}
   maxhealth: 5000
-  health: 2000
+  health: 5000
   secondPhaseBoundary: 0.5
   isVulnerable: 1
   aggroRange: 10
@@ -29780,7 +29841,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1654524494
 AudioSource:
@@ -31069,6 +31130,7 @@ MonoBehaviour:
   GoalMenuUI: {fileID: 988709694}
   GameCanvas: {fileID: 1468946438}
   CoinManager: {fileID: 735241858}
+  RankManager: {fileID: 903451558}
   text: {fileID: 2064617110}
 --- !u!212 &1665005720
 SpriteRenderer:
@@ -31135,7 +31197,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1665005722
 BoxCollider2D:
@@ -100792,7 +100854,7 @@ RectTransform:
   - {fileID: 691542808}
   - {fileID: 593227364}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
