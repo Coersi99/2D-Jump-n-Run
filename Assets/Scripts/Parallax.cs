@@ -9,6 +9,7 @@ public class Parallax : MonoBehaviour
     public GameObject cam;
     public float parallaxEffect;
     public bool enableVerticalMovement;
+    [SerializeField] public int selfDestructThreshold;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,9 @@ public class Parallax : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(transform.position.x > selfDestructThreshold) Destroy(this.gameObject);     //Destroy BG when not visible anymore
+
         float temp = (cam.transform.position.x * (1-parallaxEffect));
         float dist = (cam.transform.position.x * parallaxEffect);
 

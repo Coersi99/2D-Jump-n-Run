@@ -40,6 +40,7 @@ public class EnemyHealth : MonoBehaviour
     private void playRandomDeathSound()
     {
         int selector = Random.Range(0,3);
+        Debug.Log(selector);
         if(selector == 0)
         {
             AudioManager.Instance.playGawdEffect();
