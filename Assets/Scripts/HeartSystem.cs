@@ -15,6 +15,7 @@ public class HeartSystem : MonoBehaviour
     Material material;
     Player player;
 
+    [SerializeField] int maxLifeLimit;
     public float vulnerabilityTime = 1f;
     public List<GameObject> hearts = new List<GameObject>();
     public GameObject canvas;
@@ -143,11 +144,14 @@ public class HeartSystem : MonoBehaviour
 
     public void heal()
     {
-        GameObject rightMostHeart = hearts[life-1].gameObject;
-        GameObject heartClone = Instantiate(rightMostHeart ,new Vector3(rightMostHeart.transform.position.x + 1, rightMostHeart.transform.position.y, 1), rightMostHeart.transform.rotation);
-        heartClone.transform.SetParent(canvas.transform);
-        heartClone.transform.localScale = new Vector3(rightMostHeart.transform.localScale.x, rightMostHeart.transform.localScale.y, 1);
-        hearts.Add(heartClone);
-        life++;
+        if(life < maxLifeLimit)    
+        {
+            GameObject rightMostHeart = hearts[life-1].gameObject;
+            GameObject heartClone = Instantiate(rightMostHeart ,new Vector3(rightMostHeart.transform.position.x + 1, rightMostHeart.transform.position.y, 1), rightMostHeart.transform.rotation);
+            heartClone.transform.SetParent(canvas.transform);
+            heartClone.transform.localScale = new Vector3(rightMostHeart.transform.localScale.x, rightMostHeart.transform.localScale.y, 1);
+            hearts.Add(heartClone);
+            life++;
+        }
     }
 }

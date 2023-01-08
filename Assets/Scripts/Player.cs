@@ -141,8 +141,14 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            transform.position = new Vector3(89, -39, 0);
-
+            if(transform.position.x < 89)
+            {
+                transform.position = new Vector3(89, -39, 0);
+            }else
+            {
+                transform.position = new Vector3(218, -30, 0);
+            }
+            
         }
 
     }
