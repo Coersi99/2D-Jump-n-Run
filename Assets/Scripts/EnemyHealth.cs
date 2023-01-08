@@ -17,6 +17,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (smart) GetComponent<FieldOfView>().CanSeePlayer = true;
         if(!isVulnerable) return;
+        isVulnerable = false;
 
         health -= damage;
 
@@ -35,12 +36,17 @@ public class EnemyHealth : MonoBehaviour
             GetComponent<CircleCollider2D>().enabled = false;
             GetComponent<BoxCollider2D>().enabled = false;
         } 
+        Invoke("toggleVulnerability", 0.1f);
+    }
+
+    private void toggleVulnerability()
+    {
+        isVulnerable = true;
     }
 
     private void playRandomDeathSound()
     {
         int selector = Random.Range(0,3);
-        Debug.Log(selector);
         if(selector == 0)
         {
             AudioManager.Instance.playGawdEffect();

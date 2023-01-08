@@ -15,6 +15,7 @@ public class StupidKnightHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         if(!isVulnerable) return;
+        isVulnerable = false;
 
         health -= damage;
 
@@ -31,6 +32,12 @@ public class StupidKnightHealth : MonoBehaviour
             GetComponent<CircleCollider2D>().enabled = false;
             GetComponent<BoxCollider2D>().enabled = false;
         } 
+        Invoke("toggleVulnerability", 0.1f);
+    }
+
+    private void toggleVulnerability()
+    {
+        isVulnerable = true;
     }
 
     private void playRandomDeathSound()
