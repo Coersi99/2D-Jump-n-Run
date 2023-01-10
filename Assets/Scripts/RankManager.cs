@@ -19,11 +19,10 @@ public class RankManager : MonoBehaviour
     [SerializeField] GameObject CoinManager;
     public int score;
 
-    public double s_boundary = 1;
-    public double a_boundary = 0.8;
-    public double b_boundary = 0.6;
-    public double c_boundary = 0.4;
-    public double d_boundary = 0.2;
+    public double s_boundary = 0.8;
+    public double a_boundary = 0.6;
+    public double b_boundary = 0.4;
+    public double c_boundary = 0.2;
 
     public string rank;
 
@@ -44,7 +43,7 @@ public class RankManager : MonoBehaviour
 
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         deaths = gm.deaths;
-        deathfactor = System.Math.Pow(1.5, deaths);
+        deathfactor = System.Math.Pow(1.2, deaths);
 
         max_score = deathfactor * (bronze_count * bronze_value + silver_count * silver_value + gold_count * gold_value);
 
@@ -72,13 +71,9 @@ public class RankManager : MonoBehaviour
         {
             this.rank = "C";
         }
-        else if (score >= max_score * d_boundary)
-        {
-            this.rank = "D";
-        }
         else
         {
-            this.rank = "F";
+            this.rank = "D";
         }
     }
 
