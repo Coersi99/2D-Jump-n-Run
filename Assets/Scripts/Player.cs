@@ -139,14 +139,18 @@ public class Player : MonoBehaviour
             material.SetFloat("_Fade", fade);
         }
 
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab) && Input.GetKeyDown(KeyCode.LeftShift))
         {
             if(transform.position.x < 89)
             {
                 transform.position = new Vector3(89, -39, 0);
-            }else
+            }else if (transform.position.x < 218)
             {
                 transform.position = new Vector3(218, -30, 0);
+            }
+            else
+            {
+                transform.position = new Vector3(310, -22, 0);
             }
             
         }
