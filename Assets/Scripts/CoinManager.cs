@@ -16,6 +16,8 @@ public class CoinManager : MonoBehaviour
     {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         score = gm.score / 2;
+        gm.score = score;
+
         text.text = score.ToString();
 
         if (instance == null)
