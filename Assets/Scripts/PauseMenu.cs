@@ -14,10 +14,13 @@ public class PauseMenu : MonoBehaviour
 
     private GameObject Goal;
 
+    private GameMaster gm;
+
     private void Start()
     {
         GameIsPaused = false;
         Goal = GameObject.FindGameObjectWithTag("Goal");
+        gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
     }
 
     // Update is called once per frame
@@ -56,6 +59,10 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(MainMenu);
+
+        gm.score = 0;
+        gm.deaths = 0;
+        gm.lastCheckPointPos = gm.firstCheckPointPos;
     }
 
     public void QuitGame()

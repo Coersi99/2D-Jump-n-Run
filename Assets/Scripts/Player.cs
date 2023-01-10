@@ -58,11 +58,20 @@ public class Player : MonoBehaviour
     public float knockbackCounter;
     public bool knockFromRight;
 
+    //gamemaster stuff
+    private GameMaster gm;
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         material = GetComponent<SpriteRenderer>().material;
         rb  = GetComponent<Rigidbody2D>();
+
+        gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+        gm.firstCheckPointPos = transform.position;
     }
 
     // Update is called once per frame
