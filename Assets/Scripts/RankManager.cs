@@ -19,10 +19,10 @@ public class RankManager : MonoBehaviour
     [SerializeField] GameObject CoinManager;
     public int score;
 
-    public double s_boundary = 0.8;
-    public double a_boundary = 0.6;
-    public double b_boundary = 0.4;
-    public double c_boundary = 0.2;
+    [SerializeField] double s_boundary = 0.8;
+    [SerializeField] double a_boundary = 0.6;
+    [SerializeField] double b_boundary = 0.4;
+    [SerializeField] double c_boundary = 0.2;
 
     public string rank;
 
