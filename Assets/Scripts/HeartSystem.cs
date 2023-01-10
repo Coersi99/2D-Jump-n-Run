@@ -22,7 +22,6 @@ public class HeartSystem : MonoBehaviour
     private int life;
     public bool playerDead = false;
     private bool triggerDeathScreen;
-    private bool fellToDeath;
     public bool isVulnerable = true;
     private float secondsCount = 0f;
 
@@ -64,12 +63,7 @@ public class HeartSystem : MonoBehaviour
 
     void Update()
     {
-        if (fellToDeath)
-        {
-            StartCoroutine(waitShortlyThenRestart());
-            fellToDeath = false;
-        }
-        else if(triggerDeathScreen)
+        if(triggerDeathScreen)
         {
             animator.SetTrigger("Death");
             rb.bodyType = RigidbodyType2D.Static;
@@ -77,6 +71,8 @@ public class HeartSystem : MonoBehaviour
             GetComponent<Player>().enabled = false;
             StartCoroutine(waitShortlyThenRestart());
             triggerDeathScreen = false;
+
+            gm.deaths++;
         }
 
         secondsCount += Time.deltaTime;
@@ -89,7 +85,6 @@ public class HeartSystem : MonoBehaviour
 
     private IEnumerator waitShortlyThenRestart()
     {
-        gm.deaths++;
         yield return new WaitForSeconds(0.5f);
         DeathScreen.Instance.enableDeathScreen();
         
@@ -138,7 +133,6 @@ public class HeartSystem : MonoBehaviour
     public void fallToDeath()
     {
         isVulnerable = true;
-        fellToDeath = true;
         TakeDamage(life, 0);
     }
 
