@@ -2109,7 +2109,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 170}
-  m_SizeDelta: {x: 547.905, y: 91.7967}
+  m_SizeDelta: {x: 626.5142, y: 102.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1632303009
 MonoBehaviour:
@@ -2131,7 +2131,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ROBO-GUN-RUN
+  m_text: Adventure of C3FT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e2b5c857a2fb946dbbe9fa1143aeb659, type: 2}
   m_sharedMaterial: {fileID: -6355047288869048128, guid: e2b5c857a2fb946dbbe9fa1143aeb659, type: 2}
