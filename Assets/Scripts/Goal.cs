@@ -27,7 +27,7 @@ public class Goal : MonoBehaviour
         {
             Time.timeScale = 0f;
             LevelIsFinished = true;
-            text.text = "SCORE: " + CoinManager.GetComponent<CoinManager>().getScore().ToString() + "\n Deaths: " + RankManager.GetComponent<RankManager>().getDeaths().ToString() + "\nRANK: " + RankManager.GetComponent<RankManager>().getRank();
+            text.text = "Score: " + CoinManager.GetComponent<CoinManager>().getScore().ToString() + "\n Deaths: " + RankManager.GetComponent<RankManager>().getDeaths().ToString() + "\nRank: " + RankManager.GetComponent<RankManager>().getRank();
             
             GoalMenuUI.SetActive(true);
             GameCanvas.SetActive(false);
