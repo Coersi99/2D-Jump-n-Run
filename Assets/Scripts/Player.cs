@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     bool isDissolving = true;
 
     //(Charged) shot stuff
-    private bool canShoot = true;
+    public bool canShoot = true;
     [SerializeField] public float shootCooldown;
     [SerializeField] private float chargeSpeed;
 	[SerializeField] private float chargeLimit;
@@ -61,8 +61,8 @@ public class Player : MonoBehaviour
     //gamemaster stuff
     private GameMaster gm;
 
-
-
+    //Bool used for resuming game and thus executing certain actions where button was held down
+    private bool gameResumed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -78,11 +78,24 @@ public class Player : MonoBehaviour
     void Update()
     {
         if(PauseMenu.GameIsPaused){         //disable all actions when game is paused
+            gameResumed = true;
             return;
         }
 
-        if(Input.GetKeyUp(KeyCode.K)  && !isDissolving)     //release shot
+        if(isDissolving)    //Activate dissolve shader (inverted) when spawned
         {
+            fade += Time.deltaTime/2;
+            if(fade >= 1f)
+            {
+                fade = 1;
+                isDissolving = false;
+            }
+            material.SetFloat("_Fade", fade);
+        }
+
+        if((Input.GetKeyUp(KeyCode.K)  && !isDissolving) || (gameResumed && !isDissolving && chargeTime >= chargeLimit))     //release charged shot when K released or game resumed
+        {
+            gameResumed = false;
             animator.SetBool("isFullyCharged", false);
             chargeEffect.Stop();
             isCharging = false;
@@ -108,9 +121,10 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Crouch") && !isCharging)    //Enable crouch for CharacterController2D
         {
             crouch = true;
-        } else if(Input.GetButtonUp("Crouch"))
+        } else if(Input.GetButtonUp("Crouch") || gameResumed)
         {
             crouch = false;
+            gameResumed = false;
         }
 
         if(Input.GetKey(KeyCode.K) && knockbackCounter <= 0 && chargeTime < chargeLimit && canShoot && !controller.m_wasCrouching && !isDissolving) //Charge shot
@@ -140,17 +154,6 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.LeftShift) && !crouch && knockbackCounter <= 0)
         {
             StartCoroutine(dash());
-        }
-
-        if(isDissolving)    //Activate dissolve shader (inverted) when spawned
-        {
-            fade += Time.deltaTime/2;
-            if(fade >= 1f)
-            {
-                fade = 1;
-                isDissolving = false;
-            }
-            material.SetFloat("_Fade", fade);
         }
 
         if (Input.GetKeyDown(KeyCode.Tab) && Input.GetKeyDown(KeyCode.LeftShift))
@@ -201,14 +204,8 @@ public class Player : MonoBehaviour
 
     public void OnCrouching (bool isCrouching)
     {
-        animator.SetBool("IsCrouching", isCrouching); //Trigger crouch animation when crouching (why do I even explain...)
+        animator.SetBool("IsCrouching", isCrouching); //Trigger crouch animation when crouching 
     }
-
-    public IEnumerator Charge()
-	{
-		yield return new WaitForSeconds(0.2f);
-        Debug.Log("Hi");
-	}
 
     public IEnumerator dash()
 	{
@@ -245,22 +242,18 @@ public class Player : MonoBehaviour
             if(chargeTime < chargeLimit)
             {
                 canShoot = false;
-                controller.shootUncharged();
-                animator.SetBool("isCharge", false);
-                chargeTime = 0;
-                yield return new WaitForSeconds(shootCooldown);
-                canShoot = true;
+                controller.shootUncharged(); 
             }else
             {
                 canShoot = false;
                 controller.releaseCharge();
-                animator.SetBool("isCharge", false);
                 isCharging = false;
-                chargeTime = 0;
-                yield return new WaitForSeconds(shootCooldown);
-                canShoot = true;
             }
         }
+        animator.SetBool("isCharge", false);
+        chargeTime = 0;
+        yield return new WaitForSeconds(shootCooldown);
+        canShoot = true;
     }
 }
 
