@@ -77,7 +77,21 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isDashing || PauseMenu.GameIsPaused){
+        if(PauseMenu.GameIsPaused){         //disable all actions when game is paused
+            return;
+        }
+
+        if(Input.GetKeyUp(KeyCode.K)  && !isDissolving)     //release shot
+        {
+            animator.SetBool("isFullyCharged", false);
+            chargeEffect.Stop();
+            isCharging = false;
+            canChargeFlash = true;
+            StartCoroutine(shoot());
+        }
+
+        if(isDashing)       //disable all other actions when dashing
+        {
             return;
         }
 
@@ -121,15 +135,6 @@ public class Player : MonoBehaviour
                 chargeEffect.Stop();
                 fullyChargedEffect.Play();
             }
-        }
-
-        if(Input.GetKeyUp(KeyCode.K)  && !isDissolving)
-        {
-            animator.SetBool("isFullyCharged", false);
-            chargeEffect.Stop();
-            isCharging = false;
-            canChargeFlash = true;
-            StartCoroutine(shoot());
         }
 
         if(Input.GetKeyDown(KeyCode.LeftShift) && !crouch && knockbackCounter <= 0)
