@@ -66,6 +66,7 @@ public class HeartSystem : MonoBehaviour
         if(triggerDeathScreen)
         {
             animator.SetTrigger("Death");
+            deathSoundEffect.Play();
             rb.bodyType = RigidbodyType2D.Static;
             GetComponent<CharacterController2D>().enabled = false;
             GetComponent<Player>().enabled = false;
@@ -105,7 +106,6 @@ public class HeartSystem : MonoBehaviour
 
             if(life < 1)
             {
-                deathSoundEffect.Play();
                 triggerDeathScreen = true;
                 playerDead = true;
             }else{
