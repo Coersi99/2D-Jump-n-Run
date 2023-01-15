@@ -56,8 +56,8 @@ public class TerrainAutoRuleTile : ScriptableObject
         // Replace this Asset with the new one.
         AssetDatabase.CreateAsset(_new, AssetDatabase.GetAssetPath(this));
     }
-
+}
 #endif
 
-}
+
 
