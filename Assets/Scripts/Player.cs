@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -80,6 +81,12 @@ public class Player : MonoBehaviour
         if(PauseMenu.GameIsPaused){         //disable all actions when game is paused
             gameResumed = true;
             return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.X) && !HeartSystem.Instance.playerDead) //Load X Menu
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene("X");
         }
 
         if(isDissolving)    //Activate dissolve shader (inverted) when spawned
