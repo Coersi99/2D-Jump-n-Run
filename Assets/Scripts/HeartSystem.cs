@@ -112,6 +112,7 @@ public class HeartSystem : MonoBehaviour
 
                 player.knockbackCounter = player.knockBackTotalTime;    //Set counter to activate knockback and disallow movement
                 player.canShoot = false;    //Player can't shoot during knockback animation
+                Invoke("enableShoot", player.knockBackTotalTime);
 
                 if(direction >= 0)      //Set knockback direction given the direction of the danger source
                 {
@@ -120,8 +121,6 @@ public class HeartSystem : MonoBehaviour
                     player.knockFromRight = false;
                 }
                 
-                animator.SetBool("isFullyCharged", false);
-                animator.SetBool("isCharge", false);
                 animator.SetTrigger("Hit");
                 GetComponent<SimpleFlash>().Flash();    //Activate Flash effect (i.e. invulnerability blinking)
                 damageSoundEffect.Play();
@@ -131,6 +130,11 @@ public class HeartSystem : MonoBehaviour
             secondsCount = 0f;
             
         }
+    }
+
+    private void enableShoot()
+    {
+        player.canShoot = true;
     }
 
     public void fallToDeath()

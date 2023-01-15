@@ -102,7 +102,7 @@ MonoBehaviour:
   rb: {fileID: 1185442993518483325}
   id: 0
   speed: 15
-  damage: 100
+  damage: 50
   timeToLiveLimit: 10
 --- !u!61 &5127895707123211502
 BoxCollider2D:

@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
             material.SetFloat("_Fade", fade);
         }
 
-        if((Input.GetKeyUp(KeyCode.K)  && !isDissolving) || (gameResumed && !isDissolving && chargeTime >= chargeLimit))     //release charged shot when K released or game resumed
+        if((Input.GetKeyUp(KeyCode.K)  && !isDissolving && knockbackCounter <= 0 && canShoot) || (gameResumed && !isDissolving && chargeTime >= chargeLimit))     //release charged shot when K released or game resumed
         {
             gameResumed = false;
             animator.SetBool("isFullyCharged", false);
@@ -237,23 +237,24 @@ public class Player : MonoBehaviour
 
     public IEnumerator shoot()
     {
-        if(canShoot)
+        if(chargeTime < chargeLimit)
         {
-            if(chargeTime < chargeLimit)
-            {
-                canShoot = false;
-                controller.shootUncharged(); 
-            }else
-            {
-                canShoot = false;
-                controller.releaseCharge();
-                isCharging = false;
-            }
+            canShoot = false;
+            controller.shootUncharged(); 
+            animator.SetBool("isCharge", false);
+            chargeTime = 0;
+            yield return new WaitForSeconds(shootCooldown);
+            canShoot = true;
+        }else
+        {
+            canShoot = false;
+            controller.releaseCharge();
+            isCharging = false;
+            animator.SetBool("isCharge", false);
+            chargeTime = 0;
+            yield return new WaitForSeconds(shootCooldown);
+            canShoot = true;
         }
-        animator.SetBool("isCharge", false);
-        chargeTime = 0;
-        yield return new WaitForSeconds(shootCooldown);
-        canShoot = true;
     }
 }
 
