@@ -19,6 +19,7 @@ public class HeartSystem : MonoBehaviour
     public float vulnerabilityTime = 1f;
     public List<GameObject> hearts = new List<GameObject>();
     public GameObject canvas;
+    private float heartOffset;
     private int life;
     public bool playerDead = false;
     private bool triggerDeathScreen;
@@ -59,6 +60,7 @@ public class HeartSystem : MonoBehaviour
 
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
 
+        heartOffset = hearts[life-1].gameObject.transform.position.x - hearts[life-2].gameObject.transform.position.x;
     }
 
     void Update()
@@ -148,7 +150,7 @@ public class HeartSystem : MonoBehaviour
         if(life < maxLifeLimit)    
         {
             GameObject rightMostHeart = hearts[life-1].gameObject;
-            GameObject heartClone = Instantiate(rightMostHeart ,new Vector3(rightMostHeart.transform.position.x + 1.1f, rightMostHeart.transform.position.y, 1), rightMostHeart.transform.rotation);
+            GameObject heartClone = Instantiate(rightMostHeart ,new Vector3(rightMostHeart.transform.position.x + heartOffset, rightMostHeart.transform.position.y, 1), rightMostHeart.transform.rotation);
             heartClone.transform.SetParent(canvas.transform);
             heartClone.transform.localScale = new Vector3(rightMostHeart.transform.localScale.x, rightMostHeart.transform.localScale.y, 1);
             hearts.Add(heartClone);
