@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.X) && !HeartSystem.Instance.playerDead) //Load X Menu
+        if (Input.GetKeyDown(KeyCode.H) && !HeartSystem.Instance.playerDead) //Load X Menu
         {
             Time.timeScale = 1f;
             SceneManager.LoadScene("X");
