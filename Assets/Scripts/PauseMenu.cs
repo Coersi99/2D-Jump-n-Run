@@ -70,4 +70,9 @@ public class PauseMenu : MonoBehaviour
         Application.Quit();
     }
 
+    public void visitCredits()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
 }
