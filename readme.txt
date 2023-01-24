@@ -1,12 +1,5 @@
-Das wird ein gutes Spiel.
+Adventure of C3FT is a 2D Jump 'n' Run about Robots and Mages.
 
 
 
 
-Test
-
-
-
-
-
-Ja lol
